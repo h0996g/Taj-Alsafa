@@ -70,7 +70,9 @@ flutter:
     - assets/images/logo/
     - assets/images/drawer/
     - assets/images/home/
+    - assets/images/media/
     - assets/svg/
+    - assets/svg/media/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

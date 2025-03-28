@@ -5,6 +5,7 @@ import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/text_style.dart';
 import 'package:taj_alsafa/documents/document_page.dart';
 import 'package:taj_alsafa/screen/about/about_us.dart';
+import 'package:taj_alsafa/screen/contact/contact_us.dart';
 import 'package:taj_alsafa/screen/profile/edite/info/edite_info.dart';
 import 'package:taj_alsafa/screen/terms_conditions/terms_conditions.dart';
 
@@ -137,7 +138,9 @@ class DrawerPage extends StatelessWidget {
 
                 _buildDrawerItem(
                   title: "Contact Us",
-                  onTap: () => Navigator.pop(context),
+                  onTap:
+                      () =>
+                          navigatAndReturn(context: context, page: ContactUs()),
                 ),
                 _buildDrawerItem(
                   title: "My documents",
