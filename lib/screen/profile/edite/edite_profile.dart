@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_alsafa/components/componants.dart';
+import 'package:taj_alsafa/components/widget/appbar.dart';
 import 'package:taj_alsafa/const/colors.dart';
 
 class EditeProfile extends StatelessWidget {
@@ -30,16 +31,7 @@ class EditeProfile extends StatelessWidget {
           },
         ),
       ),
-      appBar: AppBar(
-        title: Text('Edite Profile'),
-        backgroundColor: appbar,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back_ios),
-        ),
-      ),
+      appBar: CustomAppBarSecond(title: 'Edit Profile'),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Column(

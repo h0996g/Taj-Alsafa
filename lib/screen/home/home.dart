@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_alsafa/components/componants.dart';
+import 'package:taj_alsafa/components/widget/appbar.dart';
 import 'package:taj_alsafa/components/widget/drawer.dart';
 import 'package:taj_alsafa/const/colors.dart';
 
@@ -12,35 +13,41 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       drawer: DrawerPage(),
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: appbar,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset('assets/images/logo/logo.png'),
-            SizedBox(height: 10),
-          ],
-        ),
-        leading: Builder(
-          builder:
-              (context) => IconButton(
-                icon: Icon(Icons.menu),
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-              ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Badge(
-              label: Text('3', style: TextStyle(color: Colors.black)),
-              backgroundColor: thirdColor,
-              child: Icon(Icons.notifications),
-            ),
-          ),
-        ],
+      appBar:
+      // AppBar(
+      //   centerTitle: true,
+      //   backgroundColor: appbar,
+      //   title: Column(
+      //     crossAxisAlignment: CrossAxisAlignment.center,
+      //     children: [
+      //       Image.asset('assets/images/logo/logo.png'),
+      //       SizedBox(height: 10),
+      //     ],
+      //   ),
+      //   leading: Builder(
+      //     builder:
+      //         (context) => IconButton(
+      //           icon: Icon(Icons.menu),
+      //           onPressed: () {
+      //             Scaffold.of(context).openDrawer();
+      //           },
+      //         ),
+      //   ),
+      //   actions: [
+      //     IconButton(
+      //       onPressed: () {},
+      //       icon: Badge(
+      //         label: Text('3', style: TextStyle(color: Colors.black)),
+      //         backgroundColor: thirdColor,
+      //         child: Icon(Icons.notifications),
+      //       ),
+      //     ),
+      //   ],
+      // ),
+      CustomAppBar(
+        logoAssetPath: 'assets/images/logo/logo.png',
+        notificationCount: 3,
+        onNotificationPressed: () {},
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.w),
