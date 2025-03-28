@@ -13,38 +13,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       drawer: DrawerPage(),
-      appBar:
-      // AppBar(
-      //   centerTitle: true,
-      //   backgroundColor: appbar,
-      //   title: Column(
-      //     crossAxisAlignment: CrossAxisAlignment.center,
-      //     children: [
-      //       Image.asset('assets/images/logo/logo.png'),
-      //       SizedBox(height: 10),
-      //     ],
-      //   ),
-      //   leading: Builder(
-      //     builder:
-      //         (context) => IconButton(
-      //           icon: Icon(Icons.menu),
-      //           onPressed: () {
-      //             Scaffold.of(context).openDrawer();
-      //           },
-      //         ),
-      //   ),
-      //   actions: [
-      //     IconButton(
-      //       onPressed: () {},
-      //       icon: Badge(
-      //         label: Text('3', style: TextStyle(color: Colors.black)),
-      //         backgroundColor: thirdColor,
-      //         child: Icon(Icons.notifications),
-      //       ),
-      //     ),
-      //   ],
-      // ),
-      CustomAppBar(
+      appBar: CustomAppBar(
         logoAssetPath: 'assets/images/logo/logo.png',
         notificationCount: 3,
         onNotificationPressed: () {},

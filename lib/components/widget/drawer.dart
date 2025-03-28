@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/text_style.dart';
-import 'package:taj_alsafa/screen/profile/edite/edite_profile.dart';
+import 'package:taj_alsafa/screen/profile/edite/info/edite_info.dart';
 
 class DrawerPage extends StatelessWidget {
   const DrawerPage({super.key});

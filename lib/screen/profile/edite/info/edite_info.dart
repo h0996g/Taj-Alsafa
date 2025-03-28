@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/components/widget/appbar.dart';
 import 'package:taj_alsafa/const/colors.dart';
+import 'package:taj_alsafa/screen/profile/edite/password/edite_password.dart';
 
 class EditeProfile extends StatelessWidget {
   const EditeProfile({super.key});
@@ -93,7 +94,7 @@ class EditeProfile extends StatelessWidget {
               text: 'Change Password',
 
               onPressed: () {
-                // navigatAndFinish(context: context, page: HomePage());
+                navigatAndReturn(context: context, page: EditePassword());
               },
             ),
           ],
