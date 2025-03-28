@@ -4,6 +4,7 @@ import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/components/widget/appbar.dart';
 import 'package:taj_alsafa/components/widget/drawer.dart';
 import 'package:taj_alsafa/const/colors.dart';
+import 'package:taj_alsafa/screen/notification/notification.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,7 +17,9 @@ class HomePage extends StatelessWidget {
       appBar: CustomAppBar(
         logoAssetPath: 'assets/images/logo/logo.png',
         notificationCount: 3,
-        onNotificationPressed: () {},
+        onNotificationPressed: () {
+          navigatAndReturn(context: context, page: NotificationPage());
+        },
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.w),

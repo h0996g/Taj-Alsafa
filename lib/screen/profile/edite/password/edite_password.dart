@@ -26,9 +26,7 @@ class EditePassword extends StatelessWidget {
         child: CustomSubmitButton(
           text: 'Change Password',
           textColor: Colors.white,
-          onPressed: () {
-            // navigatAndFinish(context: context, page: HomePage());
-          },
+          onPressed: () {},
         ),
       ),
 
