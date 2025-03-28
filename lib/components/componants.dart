@@ -11,6 +11,7 @@ class CustomSubmitButton extends StatelessWidget {
   final Color color;
   final bool haveBorder;
   final Color textColor;
+  final Widget? icon;
 
   const CustomSubmitButton({
     super.key,
@@ -21,6 +22,7 @@ class CustomSubmitButton extends StatelessWidget {
     this.color = primaryColor,
     this.haveBorder = false,
     this.textColor = Colors.black,
+    this.icon,
   });
 
   @override
@@ -55,6 +57,20 @@ class CustomSubmitButton extends StatelessWidget {
                     color: Colors.white,
                     strokeWidth: 2,
                   ),
+                )
+                : icon != null
+                ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    icon!,
+                    const SizedBox(width: 5),
+                    Text(
+                      text,
+                      style: AppTextStyles.smallStyle.copyWith(
+                        color: textColor,
+                      ),
+                    ),
+                  ],
                 )
                 : Text(
                   text,
