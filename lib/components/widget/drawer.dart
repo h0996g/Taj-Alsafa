@@ -4,6 +4,7 @@ import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/text_style.dart';
 import 'package:taj_alsafa/documents/document_page.dart';
+import 'package:taj_alsafa/screen/about/about_us.dart';
 import 'package:taj_alsafa/screen/profile/edite/info/edite_info.dart';
 
 class DrawerPage extends StatelessWidget {
@@ -105,7 +106,9 @@ class DrawerPage extends StatelessWidget {
               children: [
                 _buildDrawerItem(
                   title: "About Us",
-                  onTap: () => Navigator.pop(context),
+                  onTap: () {
+                    navigatAndReturn(context: context, page: AboutUs());
+                  },
                 ),
                 _buildDrawerItem(
                   title: "Property Info",

@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
                   SizedBox(height: 20.h),
                   Text(
                     'typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus .',
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.start,
                   ),
                   SizedBox(height: 50.h),
                   CustomSubmitButton(

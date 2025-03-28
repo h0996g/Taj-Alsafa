@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taj_alsafa/const/colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -19,11 +21,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      surfaceTintColor: Colors.transparent,
+
       centerTitle: true,
       backgroundColor: appbar,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: [Image.asset(logoAssetPath), const SizedBox(height: 5)],
+        children: [
+          SvgPicture.asset('assets/svg/logo2.svg', height: 40.h),
+          const SizedBox(height: 5),
+        ],
       ),
       leading: Builder(
         builder:
@@ -62,6 +69,8 @@ class CustomAppBarSecond extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      surfaceTintColor: Colors.transparent,
+
       centerTitle: true,
       backgroundColor: appbar,
       title: Text(title),
