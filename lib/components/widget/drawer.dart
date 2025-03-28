@@ -6,6 +6,7 @@ import 'package:taj_alsafa/const/text_style.dart';
 import 'package:taj_alsafa/documents/document_page.dart';
 import 'package:taj_alsafa/screen/about/about_us.dart';
 import 'package:taj_alsafa/screen/profile/edite/info/edite_info.dart';
+import 'package:taj_alsafa/screen/terms_conditions/terms_conditions.dart';
 
 class DrawerPage extends StatelessWidget {
   const DrawerPage({super.key});
@@ -116,7 +117,11 @@ class DrawerPage extends StatelessWidget {
                 ),
                 _buildDrawerItem(
                   title: "Terms And Conditions",
-                  onTap: () => Navigator.pop(context),
+                  onTap:
+                      () => navigatAndReturn(
+                        context: context,
+                        page: TermsConditions(),
+                      ),
                 ),
 
                 // -- CUSTOM DIVIDER --
