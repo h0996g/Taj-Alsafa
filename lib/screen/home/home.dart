@@ -12,8 +12,9 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: primaryColor,
         title: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset('assets/images/logo/logo.png'),
+            Center(child: Image.asset('assets/images/logo/logo.png')),
             SizedBox(height: 10),
           ],
         ),

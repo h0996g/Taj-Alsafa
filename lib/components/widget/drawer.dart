@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_alsafa/const/colors.dart';
+import 'package:taj_alsafa/const/text_style.dart';
 
 class DrawerPage extends StatelessWidget {
   const DrawerPage({super.key});
@@ -12,16 +14,21 @@ class DrawerPage extends StatelessWidget {
         children: [
           // -- HEADER SECTION --
           Container(
-            height: 220, // Adjust height if needed
+            height: 180.h,
             width: double.infinity,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/images/drawer/header.png'),
                 fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                  primaryColor,
+                  BlendMode.hardLight,
+                ),
               ),
             ),
+
             child: Padding(
-              padding: const EdgeInsets.only(left: 16, bottom: 16),
+              padding: const EdgeInsets.only(left: 20, bottom: 16),
               child: Align(
                 alignment: Alignment.bottomLeft,
                 child: Column(
@@ -64,20 +71,23 @@ class DrawerPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     // -- USER NAME --
-                    const Text(
+                    Text(
                       "Moamen Qudah",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: AppTextStyles.smallStyle.copyWith(
+                        color: Colors.black,
+                        fontSize: 12.sp,
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
           ),
-
+          SizedBox(height: 10.h),
           // -- DRAWER MENU ITEMS --
           Expanded(
             child: ListView(
-              padding: EdgeInsets.zero,
+              padding: EdgeInsets.only(left: 10),
               children: [
                 _buildDrawerItem(
                   title: "About Us",
@@ -138,13 +148,10 @@ class DrawerPage extends StatelessWidget {
         height: 28,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.grey.shade200,
+          color: Colors.white,
+          border: Border.all(color: backgroundColor),
         ),
-        child: const Icon(
-          Icons.arrow_forward_ios,
-          size: 14,
-          color: Colors.black54,
-        ),
+        child: Icon(Icons.arrow_forward_ios, size: 14, color: backgroundColor),
       ),
       onTap: onTap,
     );
