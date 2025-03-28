@@ -5,6 +5,7 @@ import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/const.dart';
 import 'package:taj_alsafa/const/text_style.dart';
 import 'package:taj_alsafa/screen/Auth/Login/forget_pass/forget_pass.dart';
+import 'package:taj_alsafa/screen/home/home.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -51,7 +52,12 @@ class Login extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10.h),
-              CustomSubmitButton(text: 'Sign In', onPressed: () {}),
+              CustomSubmitButton(
+                text: 'Sign In',
+                onPressed: () {
+                  navigatAndFinish(context: context, page: HomePage());
+                },
+              ),
             ],
           ),
         ),
