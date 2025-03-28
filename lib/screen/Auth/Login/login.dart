@@ -4,6 +4,7 @@ import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/const.dart';
 import 'package:taj_alsafa/const/text_style.dart';
+import 'package:taj_alsafa/screen/Auth/Login/forget_pass/forget_pass.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -29,15 +30,23 @@ class Login extends StatelessWidget {
 
               Align(
                 alignment: Alignment.centerLeft,
-                child: Text.rich(
-                  TextSpan(
-                    text: 'Forget Password',
-                    style: TextStyle(
-                      fontSize: 14.0.sp, // your desired font size
+                child: InkWell(
+                  onTap: () {
+                    navigatAndReturn(context: context, page: ForgetPass());
+                  },
+                  child: Text.rich(
+                    TextSpan(
+                      text: 'Forget Password',
+                      style: TextStyle(
+                        fontSize: 14.0.sp, // your desired font size
+                      ),
+                      children: [
+                        TextSpan(
+                          text: ' ؟',
+                          style: TextStyle(fontSize: 18.0.sp),
+                        ),
+                      ],
                     ),
-                    children: [
-                      TextSpan(text: ' ؟', style: TextStyle(fontSize: 18.0.sp)),
-                    ],
                   ),
                 ),
               ),

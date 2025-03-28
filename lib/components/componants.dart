@@ -49,7 +49,7 @@ class CustomSubmitButton extends StatelessWidget {
                     strokeWidth: 2,
                   ),
                 )
-                : Text(text, style: AppTextStyles.secondaryStyle),
+                : Text(text, style: AppTextStyles.smallStyle),
       ),
     );
   }
@@ -101,3 +101,13 @@ class CustomTextField extends StatelessWidget {
     );
   }
 }
+
+void navigatAndReturn({required context, required page}) =>
+    Navigator.push(context, MaterialPageRoute(builder: (context) => page));
+
+void navigatAndFinish({required context, required page}) =>
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => page),
+      (route) => false,
+    );
