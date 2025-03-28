@@ -9,6 +9,7 @@ class CustomSubmitButton extends StatelessWidget {
   final bool isLoading;
   final double width;
   final Color color;
+  final bool haveBorder;
 
   const CustomSubmitButton({
     super.key,
@@ -17,6 +18,7 @@ class CustomSubmitButton extends StatelessWidget {
     this.isLoading = false,
     this.width = double.infinity,
     this.color = primaryColor,
+    this.haveBorder = false,
   });
 
   @override
@@ -33,11 +35,14 @@ class CustomSubmitButton extends StatelessWidget {
             20.h,
           ), // Minimizes the button height to 40 pixels
           padding: EdgeInsets.symmetric(vertical: 6.0.h, horizontal: 20.0.w),
+
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5),
-            side: const BorderSide(color: Colors.white, width: 1),
+            side:
+                haveBorder
+                    ? const BorderSide(color: Colors.white, width: 1)
+                    : BorderSide.none,
           ),
-          elevation: 2,
         ),
         child:
             isLoading

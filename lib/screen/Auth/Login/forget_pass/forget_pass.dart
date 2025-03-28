@@ -30,6 +30,7 @@ class ForgetPass extends StatelessWidget {
 
                   SizedBox(height: 50.h),
                   CustomSubmitButton(
+                    haveBorder: true,
                     text: 'Recover Password',
                     onPressed: () {},
                   ),

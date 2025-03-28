@@ -53,6 +53,7 @@ class Login extends StatelessWidget {
               ),
               SizedBox(height: 10.h),
               CustomSubmitButton(
+                haveBorder: true,
                 text: 'Sign In',
                 onPressed: () {
                   navigatAndFinish(context: context, page: HomePage());
