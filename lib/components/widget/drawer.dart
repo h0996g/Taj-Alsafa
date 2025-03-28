@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/text_style.dart';
+import 'package:taj_alsafa/screen/profile/edite/edite_profile.dart';
 
 class DrawerPage extends StatelessWidget {
   const DrawerPage({super.key});
@@ -52,18 +54,29 @@ class DrawerPage extends StatelessWidget {
                         Positioned(
                           bottom: -5,
                           right: 10,
-                          // left: -0,
-                          child: Container(
-                            width: 24,
-                            height: 24,
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(
-                              Icons.edit,
-                              size: 14,
-                              color: Colors.black,
+                          child: Material(
+                            elevation: 4,
+                            shape: const CircleBorder(),
+                            child: Container(
+                              width: 24,
+                              height: 24,
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                                shape: BoxShape.circle,
+                              ),
+                              child: GestureDetector(
+                                onTap: () {
+                                  navigatAndReturn(
+                                    context: context,
+                                    page: EditeProfile(),
+                                  );
+                                },
+                                child: const Icon(
+                                  Icons.edit,
+                                  size: 14,
+                                  color: Colors.black,
+                                ),
+                              ),
                             ),
                           ),
                         ),

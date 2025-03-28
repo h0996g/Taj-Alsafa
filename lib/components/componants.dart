@@ -10,6 +10,7 @@ class CustomSubmitButton extends StatelessWidget {
   final double width;
   final Color color;
   final bool haveBorder;
+  final Color textColor;
 
   const CustomSubmitButton({
     super.key,
@@ -19,6 +20,7 @@ class CustomSubmitButton extends StatelessWidget {
     this.width = double.infinity,
     this.color = primaryColor,
     this.haveBorder = false,
+    this.textColor = Colors.black,
   });
 
   @override
@@ -54,54 +56,60 @@ class CustomSubmitButton extends StatelessWidget {
                     strokeWidth: 2,
                   ),
                 )
-                : Text(text, style: AppTextStyles.smallStyle),
+                : Text(
+                  text,
+                  style: AppTextStyles.smallStyle.copyWith(color: textColor),
+                ),
       ),
     );
   }
 }
 
 class CustomTextField extends StatelessWidget {
-  // final String labelText;
   final String hintText;
   final VoidCallback? onTap;
 
-  const CustomTextField({
-    super.key,
-    // required this.labelText,
-    required this.hintText,
-    this.onTap,
-  });
+  const CustomTextField({super.key, required this.hintText, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      cursorColor: primaryColor,
-      onTap: onTap,
-      decoration: InputDecoration(
-        fillColor: Colors.white,
-        // hoverColor: Colors.white,
-        // focusColor: Colors.white,
-        filled: true,
-        isDense: true, // Reduces the vertical space
-        contentPadding: EdgeInsets.symmetric(
-          vertical: 7.0.h,
-          horizontal: 20.0.w,
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(5),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 100,
+            offset: const Offset(20, 50),
+          ),
+        ],
+      ),
+      child: TextFormField(
+        cursorColor: primaryColor,
+        onTap: onTap,
+        decoration: InputDecoration(
+          fillColor: Colors.white,
+          filled: true,
+          isDense: true,
+          contentPadding: EdgeInsets.symmetric(
+            vertical: 7.0.h,
+            horizontal: 20.0.w,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderSide: BorderSide(color: Colors.grey.shade200, width: 1),
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderSide: BorderSide(color: primaryColor),
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderSide: BorderSide(color: Colors.white.withOpacity(0.5)),
+          ),
+          hintText: hintText,
         ),
-        // labelStyle: TextStyle(color: primaryColor),
-        enabledBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          borderSide: BorderSide(color: Colors.white),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          borderSide: BorderSide(color: primaryColor),
-        ),
-        border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          borderSide: BorderSide(color: Colors.white),
-        ),
-        // labelText: labelText,
-        hintText: hintText,
       ),
     );
   }

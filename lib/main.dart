@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_alsafa/helper/observer.dart';
 import 'package:taj_alsafa/screen/Auth/Login/login.dart';
+import 'package:taj_alsafa/them.dart';
 
 void main() {
   Bloc.observer = MyBlocObserver();
@@ -19,7 +20,12 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
 
-      child: MaterialApp(debugShowCheckedModeBanner: false, home: Login()),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Login(),
+
+        theme: AppThemes.lightTheme,
+      ),
     );
   }
 }

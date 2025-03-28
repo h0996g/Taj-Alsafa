@@ -13,11 +13,12 @@ class HomePage extends StatelessWidget {
       backgroundColor: Colors.white,
       drawer: DrawerPage(),
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: appbar,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Center(child: Image.asset('assets/images/logo/logo.png')),
+            Image.asset('assets/images/logo/logo.png'),
             SizedBox(height: 10),
           ],
         ),
