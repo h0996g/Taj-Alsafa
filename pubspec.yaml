@@ -68,6 +68,7 @@ flutter:
     - assets/images/splash/
     - assets/images/intro/
     - assets/images/logo/
+    - assets/images/drawer/
     - assets/svg/
   #   - images/a_dot_ham.jpeg
 

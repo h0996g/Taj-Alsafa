@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
 
-      child: MaterialApp(home: Login()),
+      child: MaterialApp(debugShowCheckedModeBanner: false, home: Login()),
     );
   }
 }

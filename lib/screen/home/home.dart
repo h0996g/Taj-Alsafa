@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taj_alsafa/components/widget/drawer.dart';
 import 'package:taj_alsafa/const/colors.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,6 +8,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerPage(),
       appBar: AppBar(
         backgroundColor: primaryColor,
         title: Column(
@@ -15,7 +17,15 @@ class HomePage extends StatelessWidget {
             SizedBox(height: 10),
           ],
         ),
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+        leading: Builder(
+          builder:
+              (context) => IconButton(
+                icon: Icon(Icons.menu),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+              ),
+        ),
         actions: [
           IconButton(
             onPressed: () {},
@@ -27,6 +37,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+      body: Center(child: Text('Home Page Content')),
     );
   }
 }
