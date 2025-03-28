@@ -25,7 +25,7 @@ class NotificationPage extends StatelessWidget {
               time: '9:45 AM',
               ticketNumber: '11',
               description:
-                  'Another maintenance issue resolved successfully. No further actions required.',
+                  'Maintenance work was carried out and completed required. All the mentioned problems were fixed.',
             ),
           ],
         ),

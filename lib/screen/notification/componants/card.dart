@@ -71,16 +71,16 @@ class NotificationCard extends StatelessWidget {
                       children: [
                         Text(
                           'Ticket No.$ticketNumber',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                            fontSize: 14.sp,
                           ),
                         ),
                         Expanded(
                           child: Text(
                             description,
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 12.sp,
                               color: Colors.grey[800],
                             ),
                           ),
