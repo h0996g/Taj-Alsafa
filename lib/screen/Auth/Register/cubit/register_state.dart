@@ -9,7 +9,11 @@ final class ProfileImageSelected extends RegisterState {}
 
 final class RegisterLoadingState extends RegisterState {}
 
-final class UserInfoSaved extends RegisterState {}
+final class UserInfoSaved extends RegisterState {
+  final String userId;
+
+  UserInfoSaved({required this.userId});
+}
 
 final class UserAlreadyExistsErrorState extends RegisterState {
   final String errorMessage;

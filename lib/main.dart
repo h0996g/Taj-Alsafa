@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:taj_alsafa/const/const.dart';
 import 'package:taj_alsafa/helper/observer.dart';
 import 'package:taj_alsafa/hive/BD/hive.dart';
 import 'package:taj_alsafa/hive/user/user_mode.dart';
 import 'package:taj_alsafa/screen/Auth/Login/cubit/login_cubit.dart';
 import 'package:taj_alsafa/screen/Auth/Login/login.dart';
+import 'package:taj_alsafa/screen/home/cubit/home_cubit.dart';
 import 'package:taj_alsafa/them.dart';
 
 Future<void> main() async {
@@ -15,7 +17,7 @@ Future<void> main() async {
   Bloc.observer = MyBlocObserver();
   await Hive.initFlutter();
   await HiveDB.initHive(); // Initialize Hive and open the "users" box
-
+  userIdConst = HiveDB.getUserId();
   // Print users stored in Hive
   printStoredUsers();
 
@@ -46,11 +48,14 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
 
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: BlocProvider(create: (context) => LoginCubit(), child: Login()),
+      child: MultiBlocProvider(
+        providers: [BlocProvider(create: (context) => HomeCubit())],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: BlocProvider(create: (context) => LoginCubit(), child: Login()),
 
-        theme: AppThemes.lightTheme,
+          theme: AppThemes.lightTheme,
+        ),
       ),
     );
   }

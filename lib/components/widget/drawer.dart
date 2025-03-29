@@ -9,6 +9,7 @@ import 'package:taj_alsafa/screen/Auth/Login/cubit/login_cubit.dart';
 import 'package:taj_alsafa/screen/Auth/Login/login.dart';
 import 'package:taj_alsafa/screen/about/about_us.dart';
 import 'package:taj_alsafa/screen/contact/contact_us.dart';
+import 'package:taj_alsafa/screen/home/cubit/home_cubit.dart';
 import 'package:taj_alsafa/screen/profile/edite/info/edite_info.dart';
 import 'package:taj_alsafa/screen/terms_conditions/terms_conditions.dart';
 
@@ -93,7 +94,7 @@ class DrawerPage extends StatelessWidget {
                     const SizedBox(height: 8),
                     // -- USER NAME --
                     Text(
-                      "Moamen Qudah",
+                      HomeCubit.get(context).userModel!.name ?? '',
                       style: AppTextStyles.smallStyle.copyWith(
                         color: Colors.black,
                         fontSize: 12.sp,

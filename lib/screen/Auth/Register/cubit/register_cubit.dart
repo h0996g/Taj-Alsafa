@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:taj_alsafa/const/const.dart';
 import 'package:taj_alsafa/hive/user/user_mode.dart';
+import 'package:uuid/uuid.dart';
 
 part 'register_state.dart';
 
@@ -61,9 +62,10 @@ class RegisterCubit extends Cubit<RegisterState> {
       emit(UserAlreadyExistsErrorState(errorMessage));
       return;
     }
-
+    final uuid = Uuid();
     // Create a UserModel instance.
     final user = UserModel(
+      id: uuid.v4(),
       name: name,
       email: email,
       password: password,
@@ -74,6 +76,6 @@ class RegisterCubit extends Cubit<RegisterState> {
     await userBox.add(user);
 
     // Emit a state indicating the user info was saved successfully.
-    emit(UserInfoSaved());
+    emit(UserInfoSaved(userId: user.id));
   }
 }

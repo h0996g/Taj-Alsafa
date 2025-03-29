@@ -4,15 +4,32 @@ import 'package:taj_alsafa/hive/user/user_mode.dart';
 
 class HiveDB {
   static const String _infoBox = usersConst;
+  static const String _authBox = authBoxConst;
 
   static Future<void> initHive() async {
-    // Initialize Hive for Flutter.
     await Hive.initFlutter();
-
-    // Register the adapter generated for UserModel.
     Hive.registerAdapter(UserModelAdapter());
 
-    // Open a Hive box to store UserModel instances.
+    // Open user and auth boxes
     await Hive.openBox<UserModel>(_infoBox);
+    await Hive.openBox(_authBox);
+  }
+
+  /// Save user ID
+  static void saveUserId(String id) {
+    final box = Hive.box(_authBox);
+    box.put('userId', id);
+  }
+
+  /// Get user ID
+  static String? getUserId() {
+    final box = Hive.box(_authBox);
+    return box.get('userId');
+  }
+
+  /// Check if logged in
+  static bool isLoggedIn() {
+    final box = Hive.box(_authBox);
+    return box.containsKey('userId');
   }
 }

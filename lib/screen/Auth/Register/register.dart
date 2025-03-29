@@ -6,9 +6,11 @@ import 'package:taj_alsafa/components/widget/avatar.dart';
 import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/const.dart';
 import 'package:taj_alsafa/const/text_style.dart';
+import 'package:taj_alsafa/hive/BD/hive.dart';
 import 'package:taj_alsafa/screen/Auth/Login/cubit/login_cubit.dart';
 import 'package:taj_alsafa/screen/Auth/Login/login.dart';
 import 'package:taj_alsafa/screen/Auth/Register/cubit/register_cubit.dart';
+import 'package:taj_alsafa/screen/home/cubit/home_cubit.dart';
 import 'package:taj_alsafa/screen/home/home.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -131,6 +133,8 @@ class RegisterPage extends StatelessWidget {
                   BlocConsumer<RegisterCubit, RegisterState>(
                     listener: (context, state) {
                       if (state is UserInfoSaved) {
+                        HiveDB.saveUserId(state.userId);
+                        HomeCubit.get(context).getUserInfo();
                         navigatAndFinish(context: context, page: HomePage());
                       } else if (state is UserAlreadyExistsErrorState) {
                         showToast(

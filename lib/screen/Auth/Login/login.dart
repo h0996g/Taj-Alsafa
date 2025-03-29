@@ -5,10 +5,12 @@ import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/const.dart';
 import 'package:taj_alsafa/const/text_style.dart';
+import 'package:taj_alsafa/hive/BD/hive.dart';
 import 'package:taj_alsafa/screen/Auth/Login/cubit/login_cubit.dart';
 import 'package:taj_alsafa/screen/Auth/Login/forget_pass/forget_pass.dart';
 import 'package:taj_alsafa/screen/Auth/Register/cubit/register_cubit.dart';
 import 'package:taj_alsafa/screen/Auth/Register/register.dart';
+import 'package:taj_alsafa/screen/home/cubit/home_cubit.dart';
 import 'package:taj_alsafa/screen/home/home.dart';
 
 class Login extends StatelessWidget {
@@ -107,6 +109,8 @@ class Login extends StatelessWidget {
                 BlocConsumer<LoginCubit, LoginState>(
                   listener: (context, state) {
                     if (state is LoginSuccessState) {
+                      HiveDB.saveUserId(state.userId);
+                      HomeCubit.get(context).getUserInfo();
                       navigatAndFinish(context: context, page: HomePage());
                       showToast(
                         msg: 'Login Success',

@@ -19,20 +19,23 @@ class LoginCubit extends Cubit<LoginState> {
     final String enteredUserName = nameController.text;
     final String enteredPassword = passwordController.text;
     final Box<UserModel> userBox = Hive.box<UserModel>(usersConst);
-
-    UserModel? matchingUser;
-    for (var user in userBox.values) {
-      if (user.name?.toLowerCase() == enteredUserName.toLowerCase()) {
-        matchingUser = user;
-        break;
+    try {
+      UserModel? matchingUser;
+      for (var user in userBox.values) {
+        if (user.name?.toLowerCase() == enteredUserName.toLowerCase()) {
+          matchingUser = user;
+          break;
+        }
       }
-    }
 
-    if (matchingUser?.password != enteredPassword || matchingUser == null) {
-      emit(LoginErrorState("Invalid username or password"));
-      return;
+      if (matchingUser?.password != enteredPassword || matchingUser == null) {
+        emit(LoginErrorState("Invalid username or password"));
+        return;
+      }
+      emit(LoginSuccessState(matchingUser.id));
+    } catch (e) {
+      print(e);
+      emit(LoginErrorState("Something went wrong: $e"));
     }
-    print(matchingUser);
-    emit(LoginSuccessState());
   }
 }
