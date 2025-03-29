@@ -91,6 +91,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputAction textInputAction;
 
   final TextEditingController? controller;
+  final bool canTapOutside;
 
   const CustomTextField({
     super.key,
@@ -101,6 +102,7 @@ class CustomTextField extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.obscureText = false,
     this.textInputAction = TextInputAction.next,
+    this.canTapOutside = false,
   });
 
   @override
@@ -125,6 +127,12 @@ class CustomTextField extends StatelessWidget {
         textInputAction: textInputAction,
         keyboardType: keyboardType,
         onTap: onTap,
+        onTapOutside: (event) {
+          if (canTapOutside) {
+            return;
+          }
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
         decoration: InputDecoration(
           fillColor: Colors.white,
           filled: true,
