@@ -6,3 +6,7 @@ sealed class RegisterState {}
 final class RegisterInitial extends RegisterState {}
 
 final class ProfileImageSelected extends RegisterState {}
+
+final class RegisterLoadingState extends RegisterState {}
+
+final class UserInfoSaved extends RegisterState {}

@@ -22,67 +22,98 @@ class RegisterPage extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(height: 100.h),
+            child: Form(
+              key: RegisterCubit.get(context).formKey,
+              child: Column(
+                children: [
+                  SizedBox(height: 100.h),
 
-                SizedBox(height: 20.h),
-                Text('Sign Up', style: AppTextStyles.imeenStyle),
-                SizedBox(height: 20.h),
-                BlocBuilder<RegisterCubit, RegisterState>(
-                  buildWhen:
-                      (previous, current) => current is ProfileImageSelected,
-                  builder: (context, state) {
-                    return ProfileAvatar(
-                      imageFile: RegisterCubit.get(context).profileImage,
-                      onImagePicked:
-                          RegisterCubit.get(context).pickProfileImage,
-                    );
-                  },
-                ),
-                SizedBox(height: 30.h),
+                  SizedBox(height: 20.h),
+                  Text('Sign Up', style: AppTextStyles.imeenStyle),
+                  SizedBox(height: 20.h),
+                  BlocBuilder<RegisterCubit, RegisterState>(
+                    buildWhen:
+                        (previous, current) => current is ProfileImageSelected,
+                    builder: (context, state) {
+                      return ProfileAvatar(
+                        imageFile: RegisterCubit.get(context).profileImage,
+                        onImagePicked:
+                            RegisterCubit.get(context).pickProfileImage,
+                      );
+                    },
+                  ),
+                  SizedBox(height: 30.h),
 
-                CustomTextField(hintText: 'User Name'),
-                SizedBox(height: 10.h),
-                CustomTextField(hintText: 'Email'),
-                SizedBox(height: 10.h),
-                CustomTextField(hintText: 'Password'),
-                SizedBox(height: 10.h),
-                CustomTextField(hintText: 'Confirm Password'),
-                SizedBox(height: 20.h),
-                Row(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Login()),
-                          );
-                        },
-                        child: Text(
-                          'Already have an account? Sign In',
-                          style: TextStyle(
-                            fontSize: 14.0.sp,
-                            color: Colors.blue,
+                  CustomTextField(
+                    hintText: 'User Name',
+                    controller: RegisterCubit.get(context).nameController,
+                  ),
+                  SizedBox(height: 10.h),
+                  CustomTextField(
+                    hintText: 'Email',
+                    controller: RegisterCubit.get(context).emailController,
+                  ),
+                  SizedBox(height: 10.h),
+                  CustomTextField(
+                    hintText: 'Password',
+                    controller: RegisterCubit.get(context).passwordController,
+                  ),
+                  SizedBox(height: 10.h),
+                  CustomTextField(
+                    hintText: 'Confirm Password',
+                    controller:
+                        RegisterCubit.get(context).confirmPasswordController,
+                  ),
+                  SizedBox(height: 20.h),
+                  Row(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Login()),
+                            );
+                          },
+                          child: Text(
+                            'Already have an account? Sign In',
+                            style: TextStyle(
+                              fontSize: 14.0.sp,
+                              color: Colors.blue,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Spacer(),
-                  ],
-                ),
-                SizedBox(height: 10.h),
-                CustomSubmitButton(
-                  haveBorder: true,
-                  text: 'Sign Up',
-                  onPressed: () {
-                    navigatAndFinish(context: context, page: HomePage());
-                  },
-                ),
-                SizedBox(height: 20.h),
-              ],
+                      Spacer(),
+                    ],
+                  ),
+                  SizedBox(height: 10.h),
+                  BlocConsumer<RegisterCubit, RegisterState>(
+                    listener: (context, state) {
+                      if (state is UserInfoSaved) {
+                        navigatAndFinish(context: context, page: HomePage());
+                      }
+                    },
+                    builder: (context, state) {
+                      return CustomSubmitButton(
+                        isLoading: state is RegisterLoadingState,
+
+                        haveBorder: true,
+                        text: 'Sign Up',
+                        onPressed: () {
+                          if (RegisterCubit.get(
+                            context,
+                          ).formKey.currentState!.validate()) {
+                            RegisterCubit.get(context).saveUserInfo();
+                          }
+                        },
+                      );
+                    },
+                  ),
+                  SizedBox(height: 20.h),
+                ],
+              ),
             ),
           ),
         ),

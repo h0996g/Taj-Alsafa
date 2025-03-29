@@ -59,7 +59,6 @@ class Login extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: InkWell(
                       onTap: () {
-                        // Navigate to the Sign Up screen, for example
                         Navigator.push(
                           context,
                           MaterialPageRoute(

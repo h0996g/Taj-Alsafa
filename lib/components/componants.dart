@@ -84,8 +84,14 @@ class CustomSubmitButton extends StatelessWidget {
 class CustomTextField extends StatelessWidget {
   final String hintText;
   final VoidCallback? onTap;
+  final TextEditingController? controller;
 
-  const CustomTextField({super.key, required this.hintText, this.onTap});
+  const CustomTextField({
+    super.key,
+    required this.hintText,
+    this.onTap,
+    this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -102,6 +108,7 @@ class CustomTextField extends StatelessWidget {
         ],
       ),
       child: TextFormField(
+        controller: controller,
         cursorColor: primaryColor,
         onTap: onTap,
         decoration: InputDecoration(
