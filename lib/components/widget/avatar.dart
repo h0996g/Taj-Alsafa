@@ -5,24 +5,26 @@ import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/text_style.dart';
 
 class ProfileAvatar extends StatefulWidget {
-  const ProfileAvatar({super.key});
+  final File? imageFile;
+  final Function(ImageSource source) onImagePicked;
+
+  const ProfileAvatar({super.key, this.imageFile, required this.onImagePicked});
 
   @override
   _ProfileAvatarState createState() => _ProfileAvatarState();
 }
 
 class _ProfileAvatarState extends State<ProfileAvatar> {
-  File? _imageFile;
-  final ImagePicker _picker = ImagePicker();
+  // final ImagePicker _picker = ImagePicker();
 
-  Future<void> _pickImage(ImageSource source) async {
-    final pickedFile = await _picker.pickImage(source: source);
-    if (pickedFile != null) {
-      setState(() {
-        _imageFile = File(pickedFile.path);
-      });
-    }
-  }
+  // Future<void> _pickImage(ImageSource source) async {
+  //   final pickedFile = await _picker.pickImage(source: source);
+  //   if (pickedFile != null) {
+  //     setState(() {
+  //       _imageFile = File(pickedFile.path);
+  //     });
+  //   }
+  // }
 
   void _showImageSourceDialog() {
     showDialog(
@@ -51,7 +53,7 @@ class _ProfileAvatarState extends State<ProfileAvatar> {
                     ElevatedButton.icon(
                       onPressed: () {
                         Navigator.pop(context);
-                        _pickImage(ImageSource.camera);
+                        widget.onImagePicked(ImageSource.camera);
                       },
                       icon: Icon(
                         Icons.camera_alt,
@@ -74,7 +76,7 @@ class _ProfileAvatarState extends State<ProfileAvatar> {
                     ElevatedButton.icon(
                       onPressed: () {
                         Navigator.pop(context);
-                        _pickImage(ImageSource.gallery);
+                        widget.onImagePicked(ImageSource.gallery);
                       },
                       icon: Icon(
                         Icons.photo_library,
@@ -114,7 +116,8 @@ class _ProfileAvatarState extends State<ProfileAvatar> {
           backgroundColor: primaryColor,
           child: CircleAvatar(
             radius: 40,
-            backgroundImage: _imageFile != null ? FileImage(_imageFile!) : null,
+            backgroundImage:
+                widget.imageFile != null ? FileImage(widget.imageFile!) : null,
             backgroundColor: Colors.transparent,
           ),
         ),

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/const.dart';
 import 'package:taj_alsafa/const/text_style.dart';
 import 'package:taj_alsafa/screen/Auth/Login/forget_pass/forget_pass.dart';
+import 'package:taj_alsafa/screen/Auth/Register/cubit/register_cubit.dart';
 import 'package:taj_alsafa/screen/Auth/Register/register.dart';
 import 'package:taj_alsafa/screen/home/home.dart';
 
@@ -61,7 +63,11 @@ class Login extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => RegisterPage(),
+                            builder:
+                                (context) => BlocProvider(
+                                  create: (context) => RegisterCubit(),
+                                  child: RegisterPage(),
+                                ),
                           ),
                         );
                       },

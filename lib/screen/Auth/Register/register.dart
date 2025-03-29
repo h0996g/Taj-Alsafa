@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/components/widget/avatar.dart';
@@ -6,6 +7,7 @@ import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/const.dart';
 import 'package:taj_alsafa/const/text_style.dart';
 import 'package:taj_alsafa/screen/Auth/Login/login.dart';
+import 'package:taj_alsafa/screen/Auth/Register/cubit/register_cubit.dart';
 import 'package:taj_alsafa/screen/home/home.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -27,7 +29,17 @@ class RegisterPage extends StatelessWidget {
                 SizedBox(height: 20.h),
                 Text('Sign Up', style: AppTextStyles.imeenStyle),
                 SizedBox(height: 20.h),
-                const ProfileAvatar(),
+                BlocBuilder<RegisterCubit, RegisterState>(
+                  buildWhen:
+                      (previous, current) => current is ProfileImageSelected,
+                  builder: (context, state) {
+                    return ProfileAvatar(
+                      imageFile: RegisterCubit.get(context).profileImage,
+                      onImagePicked:
+                          RegisterCubit.get(context).pickProfileImage,
+                    );
+                  },
+                ),
                 SizedBox(height: 30.h),
 
                 CustomTextField(hintText: 'User Name'),
