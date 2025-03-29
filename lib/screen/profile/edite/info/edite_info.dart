@@ -1,15 +1,40 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/components/widget/appbar.dart';
+import 'package:taj_alsafa/components/widget/avatar.dart';
 import 'package:taj_alsafa/const/colors.dart';
+import 'package:taj_alsafa/screen/home/cubit/home_cubit.dart';
 import 'package:taj_alsafa/screen/profile/edite/password/edite_password.dart';
 
-class EditeProfile extends StatelessWidget {
+class EditeProfile extends StatefulWidget {
   const EditeProfile({super.key});
 
   @override
+  State<EditeProfile> createState() => _EditeProfileState();
+}
+
+class _EditeProfileState extends State<EditeProfile> {
+  @override
   Widget build(BuildContext context) {
+    File? _selectedImage;
+
+    Future<void> _pickImage(ImageSource source) async {
+      final picker = ImagePicker();
+      final pickedFile = await picker.pickImage(
+        source: source,
+        imageQuality: 85,
+      );
+      if (pickedFile != null) {
+        setState(() {
+          _selectedImage = File(pickedFile.path);
+        });
+      }
+    }
+
     return Scaffold(
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -39,44 +64,10 @@ class EditeProfile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 30.h),
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                CircleAvatar(
-                  radius: 45,
-                  backgroundColor: primaryColor,
-                  child: CircleAvatar(
-                    radius: 40,
-                    backgroundImage: AssetImage(
-                      'assets/images/drawer/Ellipse.png',
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: -5,
-                  right: 10,
-                  child: Material(
-                    elevation: 4,
-                    shape: const CircleBorder(),
-                    child: Container(
-                      width: 24,
-                      height: 24,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                      ),
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: const Icon(
-                          Icons.upload,
-                          size: 14,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+            ProfileAvatar(
+              imageFile: _selectedImage,
+              onImagePicked: _pickImage,
+              imageUrl: HomeCubit.get(context).userModel?.profileImagePath,
             ),
             SizedBox(height: 40.h),
             CustomTextField(hintText: 'Full Name'),

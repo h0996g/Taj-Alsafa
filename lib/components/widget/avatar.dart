@@ -6,9 +6,15 @@ import 'package:taj_alsafa/const/text_style.dart';
 
 class ProfileAvatar extends StatefulWidget {
   final File? imageFile;
+  final String? imageUrl;
   final Function(ImageSource source) onImagePicked;
 
-  const ProfileAvatar({super.key, this.imageFile, required this.onImagePicked});
+  const ProfileAvatar({
+    super.key,
+    this.imageFile,
+    required this.onImagePicked,
+    this.imageUrl,
+  });
 
   @override
   _ProfileAvatarState createState() => _ProfileAvatarState();
@@ -108,6 +114,12 @@ class _ProfileAvatarState extends State<ProfileAvatar> {
             backgroundImage:
                 widget.imageFile != null
                     ? FileImage(widget.imageFile!)
+                    : widget.imageUrl != null
+                    ? File(widget.imageUrl!).existsSync()
+                        ? FileImage(File(widget.imageUrl!))
+                        : AssetImage(
+                          'assets/images/drawer/Sample_User_Icon.png',
+                        )
                     : AssetImage('assets/images/drawer/Sample_User_Icon.png'),
             backgroundColor: Colors.transparent,
           ),
