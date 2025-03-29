@@ -4,6 +4,7 @@ import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/text_style.dart';
 import 'package:taj_alsafa/documents/document_page.dart';
+import 'package:taj_alsafa/screen/Auth/Login/login.dart';
 import 'package:taj_alsafa/screen/about/about_us.dart';
 import 'package:taj_alsafa/screen/contact/contact_us.dart';
 import 'package:taj_alsafa/screen/profile/edite/info/edite_info.dart';
@@ -151,7 +152,8 @@ class DrawerPage extends StatelessWidget {
                 ),
                 _buildDrawerItem(
                   title: "Log Out",
-                  onTap: () => Navigator.pop(context),
+                  onTap:
+                      () => navigatAndFinish(context: context, page: Login()),
                 ),
               ],
             ),

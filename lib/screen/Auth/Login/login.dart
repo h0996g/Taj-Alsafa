@@ -5,6 +5,7 @@ import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/const.dart';
 import 'package:taj_alsafa/const/text_style.dart';
 import 'package:taj_alsafa/screen/Auth/Login/forget_pass/forget_pass.dart';
+import 'package:taj_alsafa/screen/Auth/Register/register.dart';
 import 'package:taj_alsafa/screen/home/home.dart';
 
 class Login extends StatelessWidget {
@@ -29,27 +30,48 @@ class Login extends StatelessWidget {
               CustomTextField(hintText: 'Password'),
               SizedBox(height: 10.h),
 
-              Align(
-                alignment: Alignment.centerLeft,
-                child: InkWell(
-                  onTap: () {
-                    navigatAndReturn(context: context, page: ForgetPass());
-                  },
-                  child: Text.rich(
-                    TextSpan(
-                      text: 'Forget Password',
-                      style: TextStyle(
-                        fontSize: 14.0.sp, // your desired font size
-                      ),
-                      children: [
+              Row(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: InkWell(
+                      onTap: () {
+                        navigatAndReturn(context: context, page: ForgetPass());
+                      },
+                      child: Text.rich(
                         TextSpan(
-                          text: ' ؟',
-                          style: TextStyle(fontSize: 18.0.sp),
+                          text: 'Forget Password',
+                          style: TextStyle(fontSize: 14.0.sp),
+                          children: [
+                            TextSpan(
+                              text: ' ؟',
+                              style: TextStyle(fontSize: 18.0.sp),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
-                ),
+                  Spacer(),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: InkWell(
+                      onTap: () {
+                        // Navigate to the Sign Up screen, for example
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RegisterPage(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'Sign Up',
+                        style: TextStyle(fontSize: 14.0.sp),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(height: 10.h),
               CustomSubmitButton(
