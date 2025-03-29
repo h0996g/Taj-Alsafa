@@ -93,6 +93,11 @@ class RegisterPage extends StatelessWidget {
                     listener: (context, state) {
                       if (state is UserInfoSaved) {
                         navigatAndFinish(context: context, page: HomePage());
+                      } else if (state is UserAlreadyExistsErrorState) {
+                        showToast(
+                          msg: state.errorMessage,
+                          state: ToastStates.error,
+                        );
                       }
                     },
                     builder: (context, state) {

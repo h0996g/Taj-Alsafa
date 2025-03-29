@@ -38,21 +38,39 @@ class RegisterCubit extends Cubit<RegisterState> {
     final String name = nameController.text;
     final String email = emailController.text;
     final String password = passwordController.text;
-    final String confirmPassword = confirmPasswordController.text;
-
-    // Create a UserModel instance
-    final user = UserModel(
-      name: name,
-      email: email,
-      password: password,
-      confirmPassword: confirmPassword,
-      profileImagePath: profileImage?.path,
-    );
 
     // Get the Hive box. Make sure Hive.initHive() has been called before.
     final Box<UserModel> userBox = Hive.box<UserModel>(usersConst);
 
-    // Save the user to the box
+    // Check if a user with the same name or email already exists.
+    bool isNameTaken = userBox.values.any(
+      (user) => user.name.toLowerCase() == name.toLowerCase(),
+    );
+    bool isEmailTaken = userBox.values.any(
+      (user) => user.email.toLowerCase() == email.toLowerCase(),
+    );
+
+    if (isNameTaken || isEmailTaken) {
+      String errorMessage = '';
+      if (isNameTaken) {
+        errorMessage += 'Username is already taken. ';
+      }
+      if (isEmailTaken) {
+        errorMessage += 'Email is already registered.';
+      }
+      emit(UserAlreadyExistsErrorState(errorMessage));
+      return;
+    }
+
+    // Create a UserModel instance.
+    final user = UserModel(
+      name: name,
+      email: email,
+      password: password,
+      profileImagePath: profileImage?.path,
+    );
+
+    // Save the user to the box.
     await userBox.add(user);
 
     // Emit a state indicating the user info was saved successfully.

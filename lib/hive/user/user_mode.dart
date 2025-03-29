@@ -13,11 +13,6 @@ class UserModel extends HiveObject {
   @HiveField(2)
   final String password;
 
-  // Although confirmPassword is typically used only for validation,
-  // it’s included here per your requirement.
-  @HiveField(3)
-  final String confirmPassword;
-
   // Instead of storing a File directly, we store the file path.
   @HiveField(4)
   final String? profileImagePath;
@@ -26,7 +21,6 @@ class UserModel extends HiveObject {
     required this.name,
     required this.email,
     required this.password,
-    required this.confirmPassword,
     this.profileImagePath,
   });
 }

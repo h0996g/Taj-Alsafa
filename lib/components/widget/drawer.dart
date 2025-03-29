@@ -50,9 +50,10 @@ class DrawerPage extends StatelessWidget {
                           radius: 45,
                           backgroundColor: primaryColor,
                           child: CircleAvatar(
+                            backgroundColor: Colors.white,
                             radius: 40,
                             backgroundImage: AssetImage(
-                              'assets/images/drawer/Ellipse.png',
+                              'assets/images/drawer/Sample_User_Icon.png',
                             ),
                           ),
                         ),
