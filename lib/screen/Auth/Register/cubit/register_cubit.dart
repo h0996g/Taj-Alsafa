@@ -44,10 +44,10 @@ class RegisterCubit extends Cubit<RegisterState> {
 
     // Check if a user with the same name or email already exists.
     bool isNameTaken = userBox.values.any(
-      (user) => user.name.toLowerCase() == name.toLowerCase(),
+      (user) => user.name?.toLowerCase() == name.toLowerCase(),
     );
     bool isEmailTaken = userBox.values.any(
-      (user) => user.email.toLowerCase() == email.toLowerCase(),
+      (user) => user.email?.toLowerCase() == email.toLowerCase(),
     );
 
     if (isNameTaken || isEmailTaken) {

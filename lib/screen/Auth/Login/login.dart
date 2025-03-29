@@ -5,6 +5,7 @@ import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/const.dart';
 import 'package:taj_alsafa/const/text_style.dart';
+import 'package:taj_alsafa/screen/Auth/Login/cubit/login_cubit.dart';
 import 'package:taj_alsafa/screen/Auth/Login/forget_pass/forget_pass.dart';
 import 'package:taj_alsafa/screen/Auth/Register/cubit/register_cubit.dart';
 import 'package:taj_alsafa/screen/Auth/Register/register.dart';
@@ -20,73 +21,105 @@ class Login extends StatelessWidget {
         color: backgroundColor,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Text('Sign In', style: AppTextStyles.imeenStyle),
-              SizedBox(height: 30.h),
-              CustomTextField(hintText: 'User Name'),
+          child: Form(
+            key: LoginCubit.get(context).formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Text('Sign In', style: AppTextStyles.imeenStyle),
+                SizedBox(height: 30.h),
+                CustomTextField(
+                  hintText: 'User Name',
+                  controller: LoginCubit.get(context).nameController,
+                ),
 
-              SizedBox(height: 10.h),
-              CustomTextField(hintText: 'Password'),
-              SizedBox(height: 10.h),
+                SizedBox(height: 10.h),
+                CustomTextField(
+                  obscureText: true,
+                  hintText: 'Password',
+                  controller: LoginCubit.get(context).passwordController,
+                ),
+                SizedBox(height: 10.h),
 
-              Row(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: InkWell(
-                      onTap: () {
-                        navigatAndReturn(context: context, page: ForgetPass());
-                      },
-                      child: Text.rich(
-                        TextSpan(
-                          text: 'Forget Password',
-                          style: TextStyle(fontSize: 14.0.sp),
-                          children: [
-                            TextSpan(
-                              text: ' ؟',
-                              style: TextStyle(fontSize: 18.0.sp),
-                            ),
-                          ],
+                Row(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: InkWell(
+                        onTap: () {
+                          navigatAndReturn(
+                            context: context,
+                            page: ForgetPass(),
+                          );
+                        },
+                        child: Text.rich(
+                          TextSpan(
+                            text: 'Forget Password',
+                            style: TextStyle(fontSize: 14.0.sp),
+                            children: [
+                              TextSpan(
+                                text: ' ؟',
+                                style: TextStyle(fontSize: 18.0.sp),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Spacer(),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder:
-                                (context) => BlocProvider(
-                                  create: (context) => RegisterCubit(),
-                                  child: RegisterPage(),
-                                ),
-                          ),
-                        );
-                      },
-                      child: Text(
-                        'Sign Up',
-                        style: TextStyle(fontSize: 14.0.sp),
+                    Spacer(),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder:
+                                  (context) => BlocProvider(
+                                    create: (context) => RegisterCubit(),
+                                    child: RegisterPage(),
+                                  ),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          'Sign Up',
+                          style: TextStyle(fontSize: 14.0.sp),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 10.h),
-              CustomSubmitButton(
-                haveBorder: true,
-                text: 'Sign In',
-                onPressed: () {
-                  navigatAndFinish(context: context, page: HomePage());
-                },
-              ),
-            ],
+                  ],
+                ),
+                SizedBox(height: 10.h),
+                BlocConsumer<LoginCubit, LoginState>(
+                  listener: (context, state) {
+                    if (state is LoginSuccessState) {
+                      navigatAndFinish(context: context, page: HomePage());
+                      showToast(
+                        msg: 'Login Success',
+                        state: ToastStates.success,
+                      );
+                    } else if (state is LoginErrorState) {
+                      showToast(
+                        msg: state.errorMessage,
+                        state: ToastStates.error,
+                      );
+                    }
+                  },
+                  builder: (context, state) {
+                    return CustomSubmitButton(
+                      haveBorder: true,
+                      text: 'Sign In',
+                      onPressed: () {
+                        LoginCubit.get(context).loginUser();
+                        // navigatAndFinish(context: context, page: HomePage());
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

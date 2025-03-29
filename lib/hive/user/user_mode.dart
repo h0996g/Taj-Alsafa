@@ -5,13 +5,13 @@ part 'user_mode.g.dart'; // This tells build_runner where to generate the adapte
 @HiveType(typeId: 0)
 class UserModel extends HiveObject {
   @HiveField(0)
-  final String name;
+  final String? name;
 
   @HiveField(1)
-  final String email;
+  final String? email;
 
   @HiveField(2)
-  final String password;
+  final String? password;
 
   // Instead of storing a File directly, we store the file path.
   @HiveField(4)
@@ -21,6 +21,10 @@ class UserModel extends HiveObject {
     required this.name,
     required this.email,
     required this.password,
-    this.profileImagePath,
+    required this.profileImagePath,
   });
+  @override
+  String toString() {
+    return 'UserModel{name: $name, email: $email, password: $password, profileImagePath: $profileImagePath}';
+  }
 }

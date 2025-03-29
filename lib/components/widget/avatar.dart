@@ -15,17 +15,6 @@ class ProfileAvatar extends StatefulWidget {
 }
 
 class _ProfileAvatarState extends State<ProfileAvatar> {
-  // final ImagePicker _picker = ImagePicker();
-
-  // Future<void> _pickImage(ImageSource source) async {
-  //   final pickedFile = await _picker.pickImage(source: source);
-  //   if (pickedFile != null) {
-  //     setState(() {
-  //       _imageFile = File(pickedFile.path);
-  //     });
-  //   }
-  // }
-
   void _showImageSourceDialog() {
     showDialog(
       context: context,
@@ -112,12 +101,14 @@ class _ProfileAvatarState extends State<ProfileAvatar> {
       clipBehavior: Clip.none,
       children: [
         CircleAvatar(
-          radius: 45,
+          radius: 55,
           backgroundColor: primaryColor,
           child: CircleAvatar(
-            radius: 40,
+            radius: 50,
             backgroundImage:
-                widget.imageFile != null ? FileImage(widget.imageFile!) : null,
+                widget.imageFile != null
+                    ? FileImage(widget.imageFile!)
+                    : AssetImage('assets/images/drawer/Sample_User_Icon.png'),
             backgroundColor: Colors.transparent,
           ),
         ),

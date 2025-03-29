@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/text_style.dart';
 import 'package:taj_alsafa/documents/document_page.dart';
+import 'package:taj_alsafa/screen/Auth/Login/cubit/login_cubit.dart';
 import 'package:taj_alsafa/screen/Auth/Login/login.dart';
 import 'package:taj_alsafa/screen/about/about_us.dart';
 import 'package:taj_alsafa/screen/contact/contact_us.dart';
@@ -154,7 +156,13 @@ class DrawerPage extends StatelessWidget {
                 _buildDrawerItem(
                   title: "Log Out",
                   onTap:
-                      () => navigatAndFinish(context: context, page: Login()),
+                      () => navigatAndFinish(
+                        context: context,
+                        page: BlocProvider(
+                          create: (context) => LoginCubit(),
+                          child: Login(),
+                        ),
+                      ),
                 ),
               ],
             ),

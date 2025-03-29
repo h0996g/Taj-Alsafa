@@ -6,6 +6,7 @@ import 'package:taj_alsafa/components/widget/avatar.dart';
 import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/const.dart';
 import 'package:taj_alsafa/const/text_style.dart';
+import 'package:taj_alsafa/screen/Auth/Login/cubit/login_cubit.dart';
 import 'package:taj_alsafa/screen/Auth/Login/login.dart';
 import 'package:taj_alsafa/screen/Auth/Register/cubit/register_cubit.dart';
 import 'package:taj_alsafa/screen/home/home.dart';
@@ -47,22 +48,57 @@ class RegisterPage extends StatelessWidget {
                   CustomTextField(
                     hintText: 'User Name',
                     controller: RegisterCubit.get(context).nameController,
+
+                    validator: (p0) {
+                      if (p0!.isEmpty) {
+                        return 'Please enter your name';
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(height: 10.h),
                   CustomTextField(
                     hintText: 'Email',
                     controller: RegisterCubit.get(context).emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (p0) {
+                      if (p0!.isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      if (!p0.contains('@') || !p0.contains('.')) {
+                        return 'Please enter a valid email';
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(height: 10.h),
                   CustomTextField(
                     hintText: 'Password',
                     controller: RegisterCubit.get(context).passwordController,
+                    obscureText: true,
+                    validator: (p0) {
+                      if (p0!.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(height: 10.h),
                   CustomTextField(
                     hintText: 'Confirm Password',
                     controller:
                         RegisterCubit.get(context).confirmPasswordController,
+                    obscureText: true,
+                    validator: (p0) {
+                      if (p0!.isEmpty) {
+                        return 'Please confirm your password';
+                      }
+                      if (p0 !=
+                          RegisterCubit.get(context).passwordController.text) {
+                        return 'Passwords do not match';
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(height: 20.h),
                   Row(
@@ -73,15 +109,18 @@ class RegisterPage extends StatelessWidget {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Login()),
+                              MaterialPageRoute(
+                                builder:
+                                    (context) => BlocProvider(
+                                      create: (context) => LoginCubit(),
+                                      child: Login(),
+                                    ),
+                              ),
                             );
                           },
                           child: Text(
                             'Already have an account? Sign In',
-                            style: TextStyle(
-                              fontSize: 14.0.sp,
-                              color: Colors.blue,
-                            ),
+                            style: TextStyle(fontSize: 14.0.sp),
                           ),
                         ),
                       ),

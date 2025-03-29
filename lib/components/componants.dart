@@ -85,6 +85,11 @@ class CustomSubmitButton extends StatelessWidget {
 class CustomTextField extends StatelessWidget {
   final String hintText;
   final VoidCallback? onTap;
+  final bool obscureText;
+  final String? Function(String?)? validator;
+  final TextInputType keyboardType;
+  final TextInputAction textInputAction;
+
   final TextEditingController? controller;
 
   const CustomTextField({
@@ -92,6 +97,10 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     this.onTap,
     this.controller,
+    this.validator,
+    this.keyboardType = TextInputType.text,
+    this.obscureText = false,
+    this.textInputAction = TextInputAction.next,
   });
 
   @override
@@ -109,8 +118,12 @@ class CustomTextField extends StatelessWidget {
         ],
       ),
       child: TextFormField(
+        obscureText: obscureText,
         controller: controller,
         cursorColor: primaryColor,
+        validator: validator,
+        textInputAction: textInputAction,
+        keyboardType: keyboardType,
         onTap: onTap,
         decoration: InputDecoration(
           fillColor: Colors.white,
