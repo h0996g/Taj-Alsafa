@@ -18,6 +18,7 @@ class HiveDB {
   /// Save user ID
   static void saveUserId(String id) {
     final box = Hive.box(_authBox);
+    userIdConst = id;
     box.put('userId', id);
   }
 
@@ -25,6 +26,12 @@ class HiveDB {
   static String? getUserId() {
     final box = Hive.box(_authBox);
     return box.get('userId');
+  }
+
+  static void removeUserId() {
+    final box = Hive.box(_authBox);
+    userIdConst = null;
+    box.delete('userId');
   }
 
   /// Check if logged in

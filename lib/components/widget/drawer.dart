@@ -46,50 +46,57 @@ class DrawerPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // -- AVATAR + EDIT ICON (STACK) --
-                    Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        CircleAvatar(
-                          radius: 45,
-                          backgroundColor: primaryColor,
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            radius: 40,
-                            backgroundImage: AssetImage(
-                              'assets/images/drawer/Sample_User_Icon.png',
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: -5,
-                          right: 10,
-                          child: Material(
-                            elevation: 4,
-                            shape: const CircleBorder(),
-                            child: Container(
-                              width: 24,
-                              height: 24,
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                              ),
-                              child: GestureDetector(
-                                onTap: () {
-                                  navigatAndReturn(
-                                    context: context,
-                                    page: EditeProfile(),
-                                  );
-                                },
-                                child: const Icon(
-                                  Icons.edit,
-                                  size: 14,
-                                  color: Colors.black,
+                    BlocBuilder<HomeCubit, HomeState>(
+                      builder: (context, state) {
+                        if (HomeCubit.get(context).userModel == null) {
+                          return const CircularProgressIndicator();
+                        }
+                        return Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            CircleAvatar(
+                              radius: 45,
+                              backgroundColor: primaryColor,
+                              child: CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 40,
+                                backgroundImage: AssetImage(
+                                  'assets/images/drawer/Sample_User_Icon.png',
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                      ],
+                            Positioned(
+                              bottom: -5,
+                              right: 10,
+                              child: Material(
+                                elevation: 4,
+                                shape: const CircleBorder(),
+                                child: Container(
+                                  width: 24,
+                                  height: 24,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      navigatAndReturn(
+                                        context: context,
+                                        page: EditeProfile(),
+                                      );
+                                    },
+                                    child: const Icon(
+                                      Icons.edit,
+                                      size: 14,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
                     ),
                     const SizedBox(height: 8),
                     // -- USER NAME --
@@ -156,14 +163,16 @@ class DrawerPage extends StatelessWidget {
                 ),
                 _buildDrawerItem(
                   title: "Log Out",
-                  onTap:
-                      () => navigatAndFinish(
-                        context: context,
-                        page: BlocProvider(
-                          create: (context) => LoginCubit(),
-                          child: Login(),
-                        ),
+                  onTap: () {
+                    HomeCubit.get(context).logout();
+                    navigatAndFinish(
+                      context: context,
+                      page: BlocProvider(
+                        create: (context) => LoginCubit(),
+                        child: Login(),
                       ),
+                    );
+                  },
                 ),
               ],
             ),
