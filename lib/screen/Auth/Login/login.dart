@@ -32,6 +32,12 @@ class Login extends StatelessWidget {
                 CustomTextField(
                   hintText: 'User Name',
                   controller: LoginCubit.get(context).nameController,
+                  validator: (p0) {
+                    if (p0!.isEmpty) {
+                      return 'Please Enter Your Name';
+                    }
+                    return null;
+                  },
                 ),
 
                 SizedBox(height: 10.h),
@@ -39,6 +45,12 @@ class Login extends StatelessWidget {
                   obscureText: true,
                   hintText: 'Password',
                   controller: LoginCubit.get(context).passwordController,
+                  validator: (p0) {
+                    if (p0!.isEmpty) {
+                      return 'Please Enter Your Password';
+                    }
+                    return null;
+                  },
                 ),
                 SizedBox(height: 10.h),
 
@@ -112,8 +124,11 @@ class Login extends StatelessWidget {
                       haveBorder: true,
                       text: 'Sign In',
                       onPressed: () {
-                        LoginCubit.get(context).loginUser();
-                        // navigatAndFinish(context: context, page: HomePage());
+                        if (LoginCubit.get(
+                          context,
+                        ).formKey.currentState!.validate()) {
+                          LoginCubit.get(context).loginUser();
+                        }
                       },
                     );
                   },
