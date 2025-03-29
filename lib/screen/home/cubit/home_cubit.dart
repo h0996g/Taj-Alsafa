@@ -39,7 +39,7 @@ class HomeCubit extends Cubit<HomeState> {
     required String email,
     required File? profileImage,
   }) {
-    emit(UserInfoLoadingState());
+    emit(UpdateUserInfoLoadingState());
 
     final Box<UserModel> userBox = Hive.box<UserModel>(usersConst);
 
@@ -66,6 +66,46 @@ class HomeCubit extends Cubit<HomeState> {
       emit(UpdateUserInfoSuccessState());
     } catch (e) {
       emit(UpdateUserInfoErrorState("Something went wrong: $e"));
+    }
+  }
+
+  void updateUserPassword({
+    required String currentPassword,
+    required String newPassword,
+  }) {
+    emit(UpdateUserPasswordLoadingState());
+
+    final Box<UserModel> userBox = Hive.box<UserModel>(usersConst);
+
+    try {
+      // Check if current password is correct
+      if (userModel!.password != currentPassword) {
+        emit(UpdateUserPasswordErrorState("Current password is incorrect."));
+        return;
+      }
+
+      final userEntry = userBox.toMap().entries.firstWhere(
+        (entry) => entry.value.id == userIdConst,
+      );
+
+      final key = userEntry.key;
+
+      UserModel updatedUser = UserModel(
+        id: userIdConst!,
+        name: userModel!.name,
+        email: userModel!.email,
+        password: newPassword,
+        profileImagePath: userModel!.profileImagePath,
+        contactNumber: userModel!.contactNumber,
+        alternateContactNumber: userModel!.alternateContactNumber,
+      );
+
+      userBox.put(key, updatedUser);
+      userModel = updatedUser;
+
+      emit(UpdateUserPasswordSuccessState());
+    } catch (e) {
+      emit(UpdateUserPasswordErrorState("Failed to update password: $e"));
     }
   }
 }

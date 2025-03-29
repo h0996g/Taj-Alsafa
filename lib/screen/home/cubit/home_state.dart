@@ -15,10 +15,22 @@ final class UserInfoErrorState extends HomeState {
   UserInfoErrorState(this.errorMessage);
 }
 
+final class UpdateUserInfoLoadingState extends HomeState {}
+
 final class UpdateUserInfoSuccessState extends HomeState {}
 
 final class UpdateUserInfoErrorState extends HomeState {
   final String errorMessage;
 
   UpdateUserInfoErrorState(this.errorMessage);
+}
+
+final class UpdateUserPasswordLoadingState extends HomeState {}
+
+final class UpdateUserPasswordSuccessState extends HomeState {}
+
+final class UpdateUserPasswordErrorState extends HomeState {
+  final String errorMessage;
+
+  UpdateUserPasswordErrorState(this.errorMessage);
 }
