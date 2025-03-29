@@ -41,6 +41,7 @@ class ContactUs extends StatelessWidget {
                     '00962799263003',
                     style: AppTextStyles.secondaryStyle.copyWith(
                       color: primaryColor,
+                      fontFamily: 'ABeeZee',
                     ),
                   ),
                   SizedBox(height: 4.h),
@@ -52,6 +53,7 @@ class ContactUs extends StatelessWidget {
                     'Prince Rashid District, King Abdullah \nStreet next to Zain, Amman, Jordan',
                     style: AppTextStyles.secondaryStyle.copyWith(
                       color: primaryColor,
+                      fontFamily: 'ABeeZee',
                     ),
                   ),
                   SizedBox(height: 4.h),
@@ -63,6 +65,7 @@ class ContactUs extends StatelessWidget {
                     'info@tajalsafa.com',
                     style: AppTextStyles.secondaryStyle.copyWith(
                       color: primaryColor,
+                      fontFamily: 'ABeeZee',
                     ),
                   ),
                   SizedBox(height: 4.h),
@@ -93,6 +96,7 @@ class ContactUs extends StatelessWidget {
                     'www.Tajalsafa.com',
                     style: AppTextStyles.secondaryStyle.copyWith(
                       color: primaryColor,
+                      fontFamily: 'ABeeZee',
                     ),
                   ),
                   SizedBox(height: 4.h),

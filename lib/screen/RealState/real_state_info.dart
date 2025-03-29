@@ -30,11 +30,11 @@ class RealStateInfo extends StatelessWidget {
                   children: [
                     CustomDropdownMenu<String>(
                       hintText: '',
-                      value: "Abdoun Project - Phase 1",
+                      value: "Abdoun Project",
                       onChanged: (value) {},
                       items:
                           [
-                            'Abdoun Project - Phase 1',
+                            'Abdoun Project',
                             'Abdoun Project - Phase 2',
                             'Abdoun Project - VIP Area',
                           ].map((item) {
