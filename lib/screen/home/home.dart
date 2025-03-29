@@ -33,11 +33,23 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 height: 180.h,
                 width: double.infinity,
-                child: Image.asset(
-                  'assets/images/home/Slider.png',
-                  fit: BoxFit.cover,
+                child: PageView(
+                  controller: PageController(viewportFraction: 1),
+                  children: [
+                    Image.asset(
+                      'assets/images/home/Slider.png',
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
+                    Image.asset(
+                      'assets/images/home/Slider2.png',
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
+                  ],
                 ),
               ),
+
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: Column(
