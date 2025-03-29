@@ -133,6 +133,7 @@ class CustomTextField extends StatelessWidget {
           }
           FocusManager.instance.primaryFocus?.unfocus();
         },
+
         decoration: InputDecoration(
           fillColor: Colors.white,
           filled: true,
@@ -154,6 +155,7 @@ class CustomTextField extends StatelessWidget {
             borderSide: BorderSide(color: Colors.white.withOpacity(0.5)),
           ),
           hintText: hintText,
+          hintStyle: AppTextStyles.smallStyle,
         ),
       ),
     );

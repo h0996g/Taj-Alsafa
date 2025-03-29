@@ -23,9 +23,15 @@ class CustomListCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: AppTextStyles.secondaryStyle),
+          Text(title, style: AppTextStyles.smallStyle),
           SizedBox(height: 10.h),
-          Text(description, style: AppTextStyles.smallStyle),
+          Text(
+            description,
+            style: AppTextStyles.smallStyle.copyWith(
+              // fontWeight: FontWeight.w300,
+              fontSize: 13.sp,
+            ),
+          ),
         ],
       ),
     );

@@ -4,6 +4,7 @@ import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/components/widget/appbar.dart';
 import 'package:taj_alsafa/components/widget/drawer.dart';
 import 'package:taj_alsafa/const/colors.dart';
+import 'package:taj_alsafa/const/text_style.dart';
 import 'package:taj_alsafa/screen/notification/notification.dart';
 
 class HomePage extends StatelessWidget {
@@ -41,12 +42,18 @@ class HomePage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: Column(
                   children: [
-                    SizedBox(height: 5.h),
-                    Text('Choose Your Requirement'),
-                    SizedBox(height: 20.h),
+                    SizedBox(height: 8.h),
+                    Text(
+                      'Choose Your Requirement',
+                      style: AppTextStyles.smallStyle,
+                    ),
+                    SizedBox(height: 10.h),
                     Text(
                       'typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus .',
                       textAlign: TextAlign.start,
+                      style: AppTextStyles.smallStyle.copyWith(
+                        fontFamily: 'Adamina',
+                      ),
                     ),
                     SizedBox(height: 50.h),
                     CustomSubmitButton(

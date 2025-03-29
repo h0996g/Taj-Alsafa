@@ -122,7 +122,7 @@ class RegisterPage extends StatelessWidget {
                           },
                           child: Text(
                             'Already have an account? Sign In',
-                            style: TextStyle(fontSize: 14.0.sp),
+                            style: AppTextStyles.smallStyle,
                           ),
                         ),
                       ),

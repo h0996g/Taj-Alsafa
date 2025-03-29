@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,8 +33,8 @@ class DrawerPage extends StatelessWidget {
                 image: AssetImage('assets/images/drawer/header.png'),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
-                  primaryColor,
-                  BlendMode.hardLight,
+                  Colors.white.withOpacity(0.6),
+                  BlendMode.lighten,
                 ),
               ),
             ),
@@ -68,10 +66,7 @@ class DrawerPage extends StatelessWidget {
                         // -- USER NAME --
                         Text(
                           HomeCubit.get(context).userModel!.name ?? '',
-                          style: AppTextStyles.smallStyle.copyWith(
-                            color: Colors.black,
-                            fontSize: 12.sp,
-                          ),
+                          style: AppTextStyles.smallStyle,
                         ),
                       ],
                     );
@@ -160,10 +155,7 @@ class DrawerPage extends StatelessWidget {
     required VoidCallback onTap,
   }) {
     return ListTile(
-      title: Text(
-        title,
-        style: const TextStyle(fontSize: 16, color: Colors.black),
-      ),
+      title: Text(title, style: AppTextStyles.smallStyle),
       trailing: Container(
         width: 28,
         height: 28,

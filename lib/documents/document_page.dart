@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taj_alsafa/const/colors.dart';
+import 'package:taj_alsafa/const/text_style.dart';
 import 'package:taj_alsafa/documents/taps/invoice_tab.dart';
 import 'package:taj_alsafa/documents/taps/payment_tab.dart';
 import 'package:taj_alsafa/documents/taps/quotationTap.dart';
@@ -40,14 +41,21 @@ class _MyDocumentsPageState extends State<MyDocumentsPage>
           },
           icon: Icon(Icons.arrow_back_ios),
         ),
-        title: const Text('My Documents'),
+        title: Text(
+          'My Documents',
+          style: AppTextStyles.secondaryStyle.copyWith(
+            fontWeight: FontWeight.w300,
+          ),
+        ),
         bottom: TabBar(
           indicatorColor: Colors.green,
           labelColor: Colors.black,
 
           controller: _tabController,
-          labelStyle: const TextStyle(fontSize: 16, color: Colors.black),
-          tabs: const [
+          labelStyle: AppTextStyles.secondaryStyle.copyWith(
+            fontWeight: FontWeight.w400,
+          ),
+          tabs: [
             Tab(text: 'Quotation'),
             Tab(text: 'Invoice'),
             Tab(text: 'Payment'),

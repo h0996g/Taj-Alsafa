@@ -33,6 +33,7 @@ class Login extends StatelessWidget {
                 children: [
                   SizedBox(height: 200.h),
                   Text('Sign In', style: AppTextStyles.imeenStyle),
+
                   SizedBox(height: 30.h),
                   CustomTextField(
                     hintText: 'User Name',
@@ -73,7 +74,7 @@ class Login extends StatelessWidget {
                           child: Text.rich(
                             TextSpan(
                               text: 'Forget Password',
-                              style: TextStyle(fontSize: 14.0.sp),
+                              style: AppTextStyles.smallStyle,
                               children: [
                                 TextSpan(
                                   text: ' ؟',
@@ -102,7 +103,7 @@ class Login extends StatelessWidget {
                           },
                           child: Text(
                             'Sign Up',
-                            style: TextStyle(fontSize: 14.0.sp),
+                            style: AppTextStyles.smallStyle,
                           ),
                         ),
                       ),

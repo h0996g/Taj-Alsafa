@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taj_alsafa/const/colors.dart';
+import 'package:taj_alsafa/const/text_style.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final int notificationCount;
@@ -73,7 +74,12 @@ class CustomAppBarSecond extends StatelessWidget
 
       centerTitle: true,
       backgroundColor: appbar,
-      title: Text(title),
+      title: Text(
+        title,
+        style: AppTextStyles.secondaryStyle.copyWith(
+          fontWeight: FontWeight.w300,
+        ),
+      ),
       leading: IconButton(
         onPressed: () {
           Navigator.pop(context);

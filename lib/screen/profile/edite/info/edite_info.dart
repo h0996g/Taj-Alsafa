@@ -140,6 +140,7 @@ class _EditeProfileState extends State<EditeProfile> {
                 SizedBox(height: 15.h),
                 CustomTextField(
                   hintText: 'Contact Number',
+                  keyboardType: TextInputType.number,
                   controller: _contactNumberController,
                 ),
                 SizedBox(height: 15.h),
@@ -147,6 +148,7 @@ class _EditeProfileState extends State<EditeProfile> {
                 CustomTextField(
                   hintText: 'Alternate Contact Number',
                   controller: _alternateContactNumberController,
+                  keyboardType: TextInputType.number,
                 ),
                 SizedBox(height: 15.h),
 

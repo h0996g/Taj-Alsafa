@@ -111,10 +111,10 @@ class _ProfileAvatarState extends State<ProfileAvatar> {
       clipBehavior: Clip.none,
       children: [
         CircleAvatar(
-          radius: 55,
+          radius: 50,
           backgroundColor: primaryColor,
           child: CircleAvatar(
-            radius: 50,
+            radius: 45,
             backgroundImage:
                 widget.imageFile != null
                     ? FileImage(widget.imageFile!)

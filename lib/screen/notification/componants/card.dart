@@ -31,7 +31,25 @@ class NotificationCard extends StatelessWidget {
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
-            Row(children: [Text(date), Spacer(), Text(time)]),
+            Row(
+              children: [
+                Text(
+                  date,
+                  style: AppTextStyles.smallStyle.copyWith(
+                    fontFamily: 'ABeeZee',
+                    fontSize: 12.sp,
+                  ),
+                ),
+                Spacer(),
+                Text(
+                  time,
+                  style: AppTextStyles.smallStyle.copyWith(
+                    fontFamily: 'ABeeZee',
+                    fontSize: 12.sp,
+                  ),
+                ),
+              ],
+            ),
             SizedBox(height: 12),
             SizedBox(
               width: double.infinity,
@@ -54,9 +72,7 @@ class NotificationCard extends StatelessWidget {
                           child: Text(
                             'TAJ ALSAFA',
                             textAlign: TextAlign.center,
-                            style: AppTextStyles.smallStyle.copyWith(
-                              fontSize: 11.sp,
-                            ),
+                            style: AppTextStyles.secondaryStyle,
                           ),
                         ),
                       ),
@@ -71,17 +87,16 @@ class NotificationCard extends StatelessWidget {
                       children: [
                         Text(
                           'Ticket No.$ticketNumber',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14.sp,
+                          style: AppTextStyles.smallStyle.copyWith(
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                         Expanded(
                           child: Text(
                             description,
-                            style: TextStyle(
+                            style: AppTextStyles.smallStyle.copyWith(
+                              fontFamily: 'ABeeZee',
                               fontSize: 12.sp,
-                              color: Colors.grey[800],
                             ),
                           ),
                         ),
