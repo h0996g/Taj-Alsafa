@@ -14,3 +14,11 @@ final class UserInfoErrorState extends HomeState {
 
   UserInfoErrorState(this.errorMessage);
 }
+
+final class UpdateUserInfoSuccessState extends HomeState {}
+
+final class UpdateUserInfoErrorState extends HomeState {
+  final String errorMessage;
+
+  UpdateUserInfoErrorState(this.errorMessage);
+}

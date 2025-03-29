@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:taj_alsafa/components/componants.dart';
+import 'package:taj_alsafa/components/widget/avatar.dart';
 import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/text_style.dart';
 import 'package:taj_alsafa/documents/document_page.dart';
@@ -11,7 +15,6 @@ import 'package:taj_alsafa/screen/RealState/real_state_info.dart';
 import 'package:taj_alsafa/screen/about/about_us.dart';
 import 'package:taj_alsafa/screen/contact/contact_us.dart';
 import 'package:taj_alsafa/screen/home/cubit/home_cubit.dart';
-import 'package:taj_alsafa/screen/profile/edite/info/edite_info.dart';
 import 'package:taj_alsafa/screen/terms_conditions/terms_conditions.dart';
 
 class DrawerPage extends StatelessWidget {
@@ -42,73 +45,37 @@ class DrawerPage extends StatelessWidget {
               padding: const EdgeInsets.only(left: 20, bottom: 16),
               child: Align(
                 alignment: Alignment.bottomLeft,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    // -- AVATAR + EDIT ICON (STACK) --
-                    BlocBuilder<HomeCubit, HomeState>(
-                      builder: (context, state) {
-                        if (HomeCubit.get(context).userModel == null) {
-                          return const CircularProgressIndicator();
-                        }
-                        return Stack(
-                          clipBehavior: Clip.none,
-                          children: [
-                            CircleAvatar(
-                              radius: 45,
-                              backgroundColor: primaryColor,
-                              child: CircleAvatar(
-                                backgroundColor: Colors.white,
-                                radius: 40,
-                                backgroundImage: AssetImage(
-                                  'assets/images/drawer/Sample_User_Icon.png',
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: -5,
-                              right: 10,
-                              child: Material(
-                                elevation: 4,
-                                shape: const CircleBorder(),
-                                child: Container(
-                                  width: 24,
-                                  height: 24,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      navigatAndReturn(
-                                        context: context,
-                                        page: EditeProfile(),
-                                      );
-                                    },
-                                    child: const Icon(
-                                      Icons.edit,
-                                      size: 14,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 8),
-                    // -- USER NAME --
-                    Text(
-                      HomeCubit.get(context).userModel!.name ?? '',
-                      style: AppTextStyles.smallStyle.copyWith(
-                        color: Colors.black,
-                        fontSize: 12.sp,
-                      ),
-                    ),
-                  ],
+                child: BlocBuilder<HomeCubit, HomeState>(
+                  builder: (context, state) {
+                    if (HomeCubit.get(context).userModel == null) {
+                      return const CircularProgressIndicator();
+                    }
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        // -- AVATAR + EDIT ICON (STACK) --
+                        ProfileAvatar(
+                          imageFile: null,
+                          isEditable: true,
+                          onImagePicked: (ImageSource i) {},
+                          imageUrl:
+                              HomeCubit.get(
+                                context,
+                              ).userModel?.profileImagePath,
+                        ),
+                        const SizedBox(height: 8),
+                        // -- USER NAME --
+                        Text(
+                          HomeCubit.get(context).userModel!.name ?? '',
+                          style: AppTextStyles.smallStyle.copyWith(
+                            color: Colors.black,
+                            fontSize: 12.sp,
+                          ),
+                        ),
+                      ],
+                    );
+                  },
                 ),
               ),
             ),

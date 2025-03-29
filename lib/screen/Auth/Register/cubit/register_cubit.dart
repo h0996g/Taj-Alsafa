@@ -68,6 +68,8 @@ class RegisterCubit extends Cubit<RegisterState> {
       id: uuid.v4(),
       name: name,
       email: email,
+      alternateContactNumber: '',
+      contactNumber: '',
       password: password,
       profileImagePath: profileImage?.path,
     );

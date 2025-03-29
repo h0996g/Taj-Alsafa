@@ -1,11 +1,11 @@
 import 'package:hive/hive.dart';
 
-part 'user_mode.g.dart'; // This tells build_runner where to generate the adapter.
+part 'user_mode.g.dart';
 
 @HiveType(typeId: 0)
 class UserModel extends HiveObject {
   @HiveField(0)
-  final String id; // New field
+  final String id;
 
   @HiveField(1)
   final String? name;
@@ -16,20 +16,27 @@ class UserModel extends HiveObject {
   @HiveField(3)
   final String? password;
 
-  // Instead of storing a File directly, we store the file path.
   @HiveField(4)
   final String? profileImagePath;
 
+  @HiveField(5)
+  final String? contactNumber;
+
+  @HiveField(6)
+  final String? alternateContactNumber;
+
   UserModel({
-    required this.id, // Add this to constructor
+    required this.id,
     required this.name,
     required this.email,
     required this.password,
     required this.profileImagePath,
+    required this.contactNumber,
+    required this.alternateContactNumber,
   });
 
   @override
   String toString() {
-    return 'UserModel{id: $id, name: $name, email: $email, password: $password, profileImagePath: $profileImagePath}';
+    return 'UserModel{id: $id, name: $name, email: $email, password: $password, profileImagePath: $profileImagePath, contactNumber: $contactNumber, alternateContactNumber: $alternateContactNumber}';
   }
 }

@@ -9,6 +9,7 @@ import 'package:taj_alsafa/hive/user/user_mode.dart';
 import 'package:taj_alsafa/screen/Auth/Login/cubit/login_cubit.dart';
 import 'package:taj_alsafa/screen/Auth/Login/login.dart';
 import 'package:taj_alsafa/screen/home/cubit/home_cubit.dart';
+import 'package:taj_alsafa/screen/home/home.dart';
 import 'package:taj_alsafa/them.dart';
 
 Future<void> main() async {
@@ -49,10 +50,18 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
 
       child: MultiBlocProvider(
-        providers: [BlocProvider(create: (context) => HomeCubit())],
+        providers: [
+          BlocProvider(create: (context) => HomeCubit()..getUserInfo()),
+        ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: BlocProvider(create: (context) => LoginCubit(), child: Login()),
+          home:
+              userIdConst != null
+                  ? HomePage()
+                  : BlocProvider(
+                    create: (context) => LoginCubit(),
+                    child: Login(),
+                  ),
 
           theme: AppThemes.lightTheme,
         ),

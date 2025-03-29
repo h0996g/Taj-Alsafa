@@ -1,12 +1,15 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/text_style.dart';
+import 'package:taj_alsafa/screen/profile/edite/info/edite_info.dart';
 
 class ProfileAvatar extends StatefulWidget {
   final File? imageFile;
   final String? imageUrl;
+  final bool isEditable;
   final Function(ImageSource source) onImagePicked;
 
   const ProfileAvatar({
@@ -14,6 +17,7 @@ class ProfileAvatar extends StatefulWidget {
     this.imageFile,
     required this.onImagePicked,
     this.imageUrl,
+    this.isEditable = false,
   });
 
   @override
@@ -127,18 +131,22 @@ class _ProfileAvatarState extends State<ProfileAvatar> {
         Positioned(
           bottom: -5,
           right: 10,
-          child: Material(
-            elevation: 4,
-            shape: const CircleBorder(),
-            child: Container(
-              width: 24,
-              height: 24,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-              ),
-              child: GestureDetector(
-                onTap: _showImageSourceDialog,
+          child: GestureDetector(
+            onTap: () {
+              widget.isEditable
+                  ? navigatAndReturn(context: context, page: EditeProfile())
+                  : _showImageSourceDialog();
+            },
+            child: Material(
+              elevation: 4,
+              shape: const CircleBorder(),
+              child: Container(
+                width: 24,
+                height: 24,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                ),
                 child: const Icon(Icons.edit, size: 14, color: Colors.black),
               ),
             ),

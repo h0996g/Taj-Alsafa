@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
@@ -27,6 +29,43 @@ class HomeCubit extends Cubit<HomeState> {
       emit(UserInfoSuccessState());
     } catch (e) {
       emit(UserInfoErrorState("Something went wrong: $e"));
+    }
+  }
+
+  void updateUserInfo({
+    required String name,
+    required String contactNumber,
+    required String alternateContactNumber,
+    required String email,
+    required File? profileImage,
+  }) {
+    emit(UserInfoLoadingState());
+
+    final Box<UserModel> userBox = Hive.box<UserModel>(usersConst);
+
+    try {
+      final userEntry = userBox.toMap().entries.firstWhere(
+        (entry) => entry.value.id == userIdConst,
+      );
+
+      final key = userEntry.key;
+
+      UserModel updatedUser = UserModel(
+        id: userIdConst!,
+        name: name,
+        email: email,
+        password: userModel!.password,
+        profileImagePath: profileImage?.path ?? userModel!.profileImagePath,
+        contactNumber: contactNumber,
+        alternateContactNumber: alternateContactNumber,
+      );
+
+      userBox.put(key, updatedUser);
+      userModel = updatedUser;
+
+      emit(UpdateUserInfoSuccessState());
+    } catch (e) {
+      emit(UpdateUserInfoErrorState("Something went wrong: $e"));
     }
   }
 }
