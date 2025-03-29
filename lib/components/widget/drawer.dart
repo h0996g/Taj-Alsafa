@@ -7,6 +7,7 @@ import 'package:taj_alsafa/const/text_style.dart';
 import 'package:taj_alsafa/documents/document_page.dart';
 import 'package:taj_alsafa/screen/Auth/Login/cubit/login_cubit.dart';
 import 'package:taj_alsafa/screen/Auth/Login/login.dart';
+import 'package:taj_alsafa/screen/RealState/real_state_info.dart';
 import 'package:taj_alsafa/screen/about/about_us.dart';
 import 'package:taj_alsafa/screen/contact/contact_us.dart';
 import 'package:taj_alsafa/screen/home/cubit/home_cubit.dart';
@@ -126,7 +127,11 @@ class DrawerPage extends StatelessWidget {
                 ),
                 _buildDrawerItem(
                   title: "Property Info",
-                  onTap: () => Navigator.pop(context),
+                  onTap:
+                      () => navigatAndReturn(
+                        context: context,
+                        page: RealStateInfo(),
+                      ),
                 ),
                 _buildDrawerItem(
                   title: "Terms And Conditions",

@@ -160,6 +160,77 @@ class CustomTextField extends StatelessWidget {
   }
 }
 
+class CustomDropdownMenu<T> extends StatelessWidget {
+  final String hintText;
+  final List<DropdownMenuItem<T>> items;
+  final T? value;
+  final void Function(T?)? onChanged;
+  final String? Function(T?)? validator;
+  final bool canTapOutside;
+
+  const CustomDropdownMenu({
+    super.key,
+    required this.hintText,
+    required this.items,
+    this.value,
+    this.onChanged,
+    this.validator,
+    this.canTapOutside = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(5),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 100,
+            offset: const Offset(20, 50),
+          ),
+        ],
+      ),
+      child: DropdownButtonFormField<T>(
+        dropdownColor: Colors.white,
+        value: value,
+        items: items,
+        onChanged: onChanged,
+        validator: validator,
+        decoration: InputDecoration(
+          fillColor: appbar,
+          filled: true,
+          isDense: true,
+          contentPadding: EdgeInsets.symmetric(
+            vertical: 5.0.h,
+            horizontal: 5.0.w,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderSide: BorderSide(color: Colors.grey.shade200, width: 1),
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderSide: BorderSide(color: primaryColor),
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderSide: BorderSide(color: Colors.white),
+          ),
+        ),
+        hint: Text(hintText, style: AppTextStyles.smallStyle),
+        style: AppTextStyles.smallStyle,
+        onTap: () {
+          if (!canTapOutside) {
+            FocusManager.instance.primaryFocus?.unfocus();
+          }
+        },
+      ),
+    );
+  }
+}
+
 void navigatAndReturn({required context, required page}) =>
     Navigator.push(context, MaterialPageRoute(builder: (context) => page));
 
