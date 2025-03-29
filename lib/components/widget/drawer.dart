@@ -43,7 +43,7 @@ class DrawerPage extends StatelessWidget {
                 alignment: Alignment.bottomLeft,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     // -- AVATAR + EDIT ICON (STACK) --
                     BlocBuilder<HomeCubit, HomeState>(

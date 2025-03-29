@@ -21,123 +21,127 @@ class Login extends StatelessWidget {
     return Scaffold(
       body: Container(
         color: backgroundColor,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-          child: Form(
-            key: LoginCubit.get(context).formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Text('Sign In', style: AppTextStyles.imeenStyle),
-                SizedBox(height: 30.h),
-                CustomTextField(
-                  hintText: 'User Name',
-                  controller: LoginCubit.get(context).nameController,
-                  validator: (p0) {
-                    if (p0!.isEmpty) {
-                      return 'Please Enter Your Name';
-                    }
-                    return null;
-                  },
-                ),
+        height: double.infinity,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+            child: Form(
+              key: LoginCubit.get(context).formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  SizedBox(height: 200.h),
+                  Text('Sign In', style: AppTextStyles.imeenStyle),
+                  SizedBox(height: 30.h),
+                  CustomTextField(
+                    hintText: 'User Name',
+                    controller: LoginCubit.get(context).nameController,
+                    validator: (p0) {
+                      if (p0!.isEmpty) {
+                        return 'Please Enter Your Name';
+                      }
+                      return null;
+                    },
+                  ),
 
-                SizedBox(height: 10.h),
-                CustomTextField(
-                  obscureText: true,
-                  hintText: 'Password',
-                  controller: LoginCubit.get(context).passwordController,
-                  validator: (p0) {
-                    if (p0!.isEmpty) {
-                      return 'Please Enter Your Password';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 10.h),
+                  SizedBox(height: 10.h),
+                  CustomTextField(
+                    obscureText: true,
+                    hintText: 'Password',
+                    controller: LoginCubit.get(context).passwordController,
+                    validator: (p0) {
+                      if (p0!.isEmpty) {
+                        return 'Please Enter Your Password';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 10.h),
 
-                Row(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: InkWell(
-                        onTap: () {
-                          navigatAndReturn(
-                            context: context,
-                            page: ForgetPass(),
-                          );
-                        },
-                        child: Text.rich(
-                          TextSpan(
-                            text: 'Forget Password',
-                            style: TextStyle(fontSize: 14.0.sp),
-                            children: [
-                              TextSpan(
-                                text: ' ؟',
-                                style: TextStyle(fontSize: 18.0.sp),
-                              ),
-                            ],
+                  Row(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: InkWell(
+                          onTap: () {
+                            navigatAndReturn(
+                              context: context,
+                              page: ForgetPass(),
+                            );
+                          },
+                          child: Text.rich(
+                            TextSpan(
+                              text: 'Forget Password',
+                              style: TextStyle(fontSize: 14.0.sp),
+                              children: [
+                                TextSpan(
+                                  text: ' ؟',
+                                  style: TextStyle(fontSize: 18.0.sp),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Spacer(),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder:
-                                  (context) => BlocProvider(
-                                    create: (context) => RegisterCubit(),
-                                    child: RegisterPage(),
-                                  ),
-                            ),
-                          );
-                        },
-                        child: Text(
-                          'Sign Up',
-                          style: TextStyle(fontSize: 14.0.sp),
+                      Spacer(),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder:
+                                    (context) => BlocProvider(
+                                      create: (context) => RegisterCubit(),
+                                      child: RegisterPage(),
+                                    ),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            'Sign Up',
+                            style: TextStyle(fontSize: 14.0.sp),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10.h),
-                BlocConsumer<LoginCubit, LoginState>(
-                  listener: (context, state) {
-                    if (state is LoginSuccessState) {
-                      HiveDB.saveUserId(state.userId);
-                      HomeCubit.get(context).getUserInfo();
-                      navigatAndFinish(context: context, page: HomePage());
-                      showToast(
-                        msg: 'Login Success',
-                        state: ToastStates.success,
+                    ],
+                  ),
+                  SizedBox(height: 10.h),
+                  BlocConsumer<LoginCubit, LoginState>(
+                    listener: (context, state) {
+                      if (state is LoginSuccessState) {
+                        HiveDB.saveUserId(state.userId);
+                        HomeCubit.get(context).getUserInfo();
+                        navigatAndFinish(context: context, page: HomePage());
+                        showToast(
+                          msg: 'Login Success',
+                          state: ToastStates.success,
+                        );
+                      } else if (state is LoginErrorState) {
+                        showToast(
+                          msg: state.errorMessage,
+                          state: ToastStates.error,
+                        );
+                      }
+                    },
+                    builder: (context, state) {
+                      return CustomSubmitButton(
+                        haveBorder: true,
+                        text: 'Sign In',
+                        onPressed: () {
+                          if (LoginCubit.get(
+                            context,
+                          ).formKey.currentState!.validate()) {
+                            LoginCubit.get(context).loginUser();
+                          }
+                        },
                       );
-                    } else if (state is LoginErrorState) {
-                      showToast(
-                        msg: state.errorMessage,
-                        state: ToastStates.error,
-                      );
-                    }
-                  },
-                  builder: (context, state) {
-                    return CustomSubmitButton(
-                      haveBorder: true,
-                      text: 'Sign In',
-                      onPressed: () {
-                        if (LoginCubit.get(
-                          context,
-                        ).formKey.currentState!.validate()) {
-                          LoginCubit.get(context).loginUser();
-                        }
-                      },
-                    );
-                  },
-                ),
-              ],
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),
