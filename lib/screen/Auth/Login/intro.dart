@@ -41,6 +41,7 @@ class _IntroState extends State<Intro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: appbar,
       body: Stack(
         children: [
           // Background video

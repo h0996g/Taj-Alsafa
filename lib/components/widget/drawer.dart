@@ -161,18 +161,25 @@ class DrawerPage extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
       ),
-      trailing: Container(
-        width: 18.w,
-        height: 18.h,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.white,
-          border: Border.all(color: backgroundColor),
-        ),
-        child: Icon(
-          Icons.arrow_forward_ios,
-          size: 10.sp,
-          color: backgroundColor,
+      trailing: FittedBox(
+        child: Container(
+          width: 18.w,
+          height: 18.h,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.white,
+            border: Border.all(color: backgroundColor),
+          ),
+          child: FittedBox(
+            child: Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Icon(
+                Icons.arrow_forward_ios,
+                size: 10.sp,
+                color: backgroundColor,
+              ),
+            ),
+          ),
         ),
       ),
       onTap: onTap,

@@ -29,7 +29,7 @@ class CustomSubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 28.h,
+      height: 30.h,
       width: width,
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
@@ -151,7 +151,7 @@ class CustomTextField extends StatelessWidget {
           contentPadding:
               isPasswordEdite
                   ? EdgeInsets.all(10.0.h)
-                  : EdgeInsets.symmetric(vertical: 7.0.h, horizontal: 20.0.w),
+                  : EdgeInsets.symmetric(vertical: 5.0.h, horizontal: 20.0.w),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(5)),
             borderSide: BorderSide(color: Colors.grey.shade200, width: 1),

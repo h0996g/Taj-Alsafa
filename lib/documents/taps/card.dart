@@ -4,13 +4,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taj_alsafa/const/text_style.dart';
 import 'package:taj_alsafa/components/componants.dart'; // For CustomSubmitButton
 
-class QuotationCard extends StatelessWidget {
+class DocumentCard extends StatelessWidget {
   final Map<String, dynamic> item;
   final VoidCallback onPressed;
   final String quotationLabel;
   final String requestLabel;
 
-  const QuotationCard({
+  const DocumentCard({
     super.key,
     required this.item,
     required this.onPressed,

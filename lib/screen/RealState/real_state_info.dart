@@ -55,11 +55,20 @@ class RealStateInfo extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
               child: SizedBox(
                 width: double.infinity,
-                child: Card(
-                  elevation: 3,
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
+                child: Container(
+                  // margin: EdgeInsets.only(bottom: 16.0.h),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.white),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.4),
+                        spreadRadius: 2,
+                        blurRadius: 6,
+                        offset: const Offset(2, 0), // Shadow in all directions
+                      ),
+                    ],
                   ),
                   child: Padding(
                     padding: EdgeInsets.symmetric(
@@ -141,7 +150,7 @@ class RealStateInfo extends StatelessWidget {
             ),
             SizedBox(height: 20.h),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

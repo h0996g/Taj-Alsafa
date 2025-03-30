@@ -25,7 +25,6 @@ class _SplashScreenState extends State<SplashScreen> {
           transitionDuration: const Duration(milliseconds: 2000),
           pageBuilder:
               (_, __, ___) => userIdConst != null ? HomePage() : Intro(),
-
           transitionsBuilder: (_, animation, __, child) {
             const begin = Offset(1.0, 0.0); // From right to left
             const end = Offset.zero;
@@ -33,9 +32,24 @@ class _SplashScreenState extends State<SplashScreen> {
               begin: begin,
               end: end,
             ).chain(CurveTween(curve: Curves.easeInOut));
-            return SlideTransition(
-              position: animation.drive(tween),
-              child: child,
+
+            return Stack(
+              children: [
+                SlideTransition(
+                  position: animation.drive(tween),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        right: BorderSide(
+                          color: Colors.grey,
+                          width: 2,
+                        ), // Grey right border
+                      ),
+                    ),
+                    child: child,
+                  ),
+                ),
+              ],
             );
           },
         ),

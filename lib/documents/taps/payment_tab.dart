@@ -19,7 +19,7 @@ class PaymentTab extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         itemBuilder: (context, index) {
           final item = quotations[index];
-          return QuotationCard(
+          return DocumentCard(
             item: item,
             quotationLabel: 'Payment Number',
             requestLabel: 'Request Number',
