@@ -66,7 +66,7 @@ class RealStateInfo extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.4),
                         spreadRadius: 2,
                         blurRadius: 6,
-                        offset: const Offset(2, 0), // Shadow in all directions
+                        offset: const Offset(2, 0),
                       ),
                     ],
                   ),

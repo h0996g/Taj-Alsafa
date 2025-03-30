@@ -40,7 +40,7 @@ class _EditePasswordState extends State<EditePassword> {
               color: appbar,
               spreadRadius: 5,
               blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
+              offset: Offset(0, 3),
             ),
           ],
         ),
