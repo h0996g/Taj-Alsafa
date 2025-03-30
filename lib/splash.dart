@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:taj_alsafa/const/const.dart';
 import 'package:taj_alsafa/screen/Auth/Login/intro.dart';
+import 'package:taj_alsafa/screen/home/home.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -21,7 +23,9 @@ class _SplashScreenState extends State<SplashScreen> {
         context,
         PageRouteBuilder(
           transitionDuration: const Duration(milliseconds: 2000),
-          pageBuilder: (_, __, ___) => const Intro(),
+          pageBuilder:
+              (_, __, ___) => userIdConst != null ? HomePage() : Intro(),
+
           transitionsBuilder: (_, animation, __, child) {
             const begin = Offset(1.0, 0.0); // From right to left
             const end = Offset.zero;
