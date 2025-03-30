@@ -82,7 +82,7 @@ class _IntroState extends State<Intro> {
                   navigatAndFinish(
                     context: context,
                     page: BlocProvider(
-                      create: (context) => LoginCubit(),
+                      create: (context) => LoginCubit()..initBiometric(),
                       child: Login(),
                     ),
                   );

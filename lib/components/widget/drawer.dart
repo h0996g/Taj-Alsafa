@@ -135,7 +135,7 @@ class DrawerPage extends StatelessWidget {
                     navigatAndFinish(
                       context: context,
                       page: BlocProvider(
-                        create: (context) => LoginCubit(),
+                        create: (context) => LoginCubit()..initBiometric(),
                         child: Login(),
                       ),
                     );
