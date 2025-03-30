@@ -9,6 +9,7 @@ import 'package:taj_alsafa/hive/user/user_mode.dart';
 import 'package:taj_alsafa/screen/Auth/Login/intro.dart';
 import 'package:taj_alsafa/screen/home/cubit/home_cubit.dart';
 import 'package:taj_alsafa/screen/home/home.dart';
+import 'package:taj_alsafa/splash.dart';
 import 'package:taj_alsafa/them.dart';
 
 Future<void> main() async {
@@ -54,7 +55,9 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: userIdConst != null ? HomePage() : Intro(),
+          home:
+              // userIdConst != null ? HomePage() : Intro(),
+              SplashScreen(),
 
           theme: AppThemes.lightTheme,
         ),
