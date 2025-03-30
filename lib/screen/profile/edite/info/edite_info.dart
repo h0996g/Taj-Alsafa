@@ -64,6 +64,8 @@ class _EditeProfileState extends State<EditeProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           boxShadow: [
@@ -122,6 +124,10 @@ class _EditeProfileState extends State<EditeProfile> {
               children: [
                 SizedBox(height: 30.h),
                 ProfileAvatar(
+                  icon: Image.asset(
+                    'assets/images/home/upload.png',
+                    fit: BoxFit.none,
+                  ),
                   imageFile: _selectedImage,
                   onImagePicked: _pickImage,
                   imageUrl: HomeCubit.get(context).userModel?.profileImagePath,
@@ -137,20 +143,20 @@ class _EditeProfileState extends State<EditeProfile> {
                     return null;
                   },
                 ),
-                SizedBox(height: 15.h),
+                SizedBox(height: 10.h),
                 CustomTextField(
                   hintText: 'Contact Number',
                   keyboardType: TextInputType.number,
                   controller: _contactNumberController,
                 ),
-                SizedBox(height: 15.h),
+                SizedBox(height: 10.h),
 
                 CustomTextField(
                   hintText: 'Alternate Contact Number',
                   controller: _alternateContactNumberController,
                   keyboardType: TextInputType.number,
                 ),
-                SizedBox(height: 15.h),
+                SizedBox(height: 10.h),
 
                 CustomTextField(
                   hintText: 'Email Address',

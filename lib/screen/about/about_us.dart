@@ -37,7 +37,7 @@ class AboutUs extends StatelessWidget {
                 "We embrace change and constantly challenge tradition because we strongly desire to improve the construction method and raise the efficiency and quality of our projects to meet customer's needs, requirements, and well-being.",
                 style: AppTextStyles.smallStyle,
               ),
-              SizedBox(height: 40.h),
+              SizedBox(height: 80.h),
               ListCards(),
             ],
           ),

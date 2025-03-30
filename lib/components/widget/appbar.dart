@@ -32,7 +32,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: Builder(
         builder:
             (context) => IconButton(
-              icon: const Icon(Icons.menu),
+              icon: Icon(Icons.menu, size: 28.sp),
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
@@ -47,7 +47,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               style: const TextStyle(color: Colors.black),
             ),
             backgroundColor: thirdColor,
-            child: const Icon(Icons.notifications),
+            offset: const Offset(-4, 4),
+            largeSize: 10,
+            child: Icon(Icons.notifications, size: 28.sp),
           ),
         ),
       ],
@@ -80,7 +82,7 @@ class CustomAppBarSecond extends StatelessWidget
         onPressed: () {
           Navigator.pop(context);
         },
-        icon: Icon(Icons.arrow_back_ios),
+        icon: Icon(Icons.arrow_back_ios, color: Colors.black, size: 28.sp),
       ),
     );
   }

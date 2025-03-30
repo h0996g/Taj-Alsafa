@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:taj_alsafa/components/componants.dart';
-import 'package:taj_alsafa/const/text_style.dart';
+import 'package:taj_alsafa/documents/taps/card.dart';
 
 class QuotationTab extends StatelessWidget {
   QuotationTab({super.key});
@@ -15,51 +12,21 @@ class QuotationTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: quotations.length,
-      padding: const EdgeInsets.all(16.0),
-      itemBuilder: (context, index) {
-        final item = quotations[index];
-        return Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-            side: BorderSide(color: Colors.white),
-          ),
-          elevation: 4,
-          shadowColor: Colors.grey,
-
-          color: Colors.white,
-          margin: const EdgeInsets.only(bottom: 16.0),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Quotation Number: ${item['quotationNumber']}',
-                  style: AppTextStyles.smallStyle,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Request Number: ${item['requestNumber']}',
-                  style: AppTextStyles.smallStyle,
-                ),
-                const SizedBox(height: 16),
-                CustomSubmitButton(
-                  icon: SvgPicture.asset(
-                    'assets/svg/Pdf.svg',
-                    height: 15.h,
-                    width: 15.w,
-                  ),
-                  text: 'View File',
-                  onPressed: () {},
-                  textColor: Colors.white,
-                ),
-              ],
-            ),
-          ),
-        );
-      },
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: ListView.builder(
+        itemCount: quotations.length,
+        padding: const EdgeInsets.all(16.0),
+        itemBuilder: (context, index) {
+          final item = quotations[index];
+          return QuotationCard(
+            item: item,
+            quotationLabel: 'Quotation Number',
+            requestLabel: 'Request Number',
+            onPressed: () {},
+          );
+        },
+      ),
     );
   }
 }

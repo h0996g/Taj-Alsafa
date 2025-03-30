@@ -32,6 +32,7 @@ class _EditePasswordState extends State<EditePassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           boxShadow: [
@@ -47,10 +48,9 @@ class _EditePasswordState extends State<EditePassword> {
         child: BlocConsumer<HomeCubit, HomeState>(
           listener: (context, state) {
             if (state is UpdateUserPasswordSuccessState) {
-              Navigator.pop(context); // pop dialog
-
               showDialog(
                 context: context,
+                barrierDismissible: false,
                 builder: (context) {
                   return AlertDialog(
                     backgroundColor: Colors.white,
@@ -75,6 +75,10 @@ class _EditePasswordState extends State<EditePassword> {
                   );
                 },
               );
+              Future.delayed(Duration(seconds: 2), () {
+                Navigator.pop(context);
+                Navigator.pop(context);
+              });
             } else if (state is UpdateUserPasswordErrorState) {
               showToast(msg: state.errorMessage, state: ToastStates.error);
             }
@@ -106,6 +110,8 @@ class _EditePasswordState extends State<EditePassword> {
             children: [
               SizedBox(height: 40.h),
               CustomTextField(
+                isPasswordEdite: true,
+
                 hintText: 'Current Password',
                 controller: currentPasswordController,
                 obscureText: true,
@@ -116,8 +122,9 @@ class _EditePasswordState extends State<EditePassword> {
                   return null;
                 },
               ),
-              SizedBox(height: 15.h),
+              SizedBox(height: 10.h),
               CustomTextField(
+                isPasswordEdite: true,
                 obscureText: true,
                 hintText: 'New Password',
                 controller: newPasswordController,
@@ -128,8 +135,9 @@ class _EditePasswordState extends State<EditePassword> {
                   return null;
                 },
               ),
-              SizedBox(height: 15.h),
+              SizedBox(height: 10.h),
               CustomTextField(
+                isPasswordEdite: true,
                 obscureText: true,
                 hintText: 'Confirm New Password',
                 controller: confirmNewPasswordController,

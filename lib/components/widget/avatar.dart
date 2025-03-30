@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/const/colors.dart';
@@ -10,6 +11,7 @@ class ProfileAvatar extends StatefulWidget {
   final File? imageFile;
   final String? imageUrl;
   final bool isEditable;
+  final Widget? icon;
   final Function(ImageSource source) onImagePicked;
 
   const ProfileAvatar({
@@ -18,6 +20,7 @@ class ProfileAvatar extends StatefulWidget {
     required this.onImagePicked,
     this.imageUrl,
     this.isEditable = false,
+    this.icon,
   });
 
   @override
@@ -147,7 +150,9 @@ class _ProfileAvatarState extends State<ProfileAvatar> {
                   color: Colors.white,
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(Icons.edit, size: 14, color: Colors.black),
+                child:
+                    widget.icon ??
+                    SvgPicture.asset('assets/svg/pencil.svg', fit: BoxFit.none),
               ),
             ),
           ),

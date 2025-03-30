@@ -29,7 +29,7 @@ class CustomSubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 30.h,
+      height: 28.h,
       width: width,
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
@@ -97,6 +97,7 @@ class CustomTextField extends StatelessWidget {
 
   final TextEditingController? controller;
   final bool canTapOutside;
+  final bool isPasswordEdite;
 
   const CustomTextField({
     super.key,
@@ -108,6 +109,7 @@ class CustomTextField extends StatelessWidget {
     this.obscureText = false,
     this.textInputAction = TextInputAction.next,
     this.canTapOutside = false,
+    this.isPasswordEdite = false,
   });
 
   @override
@@ -145,10 +147,11 @@ class CustomTextField extends StatelessWidget {
           fillColor: Colors.white,
           // filled: true,
           isDense: true,
-          contentPadding: EdgeInsets.symmetric(
-            vertical: 7.0.h,
-            horizontal: 20.0.w,
-          ),
+
+          contentPadding:
+              isPasswordEdite
+                  ? EdgeInsets.all(10.0.h)
+                  : EdgeInsets.symmetric(vertical: 7.0.h, horizontal: 20.0.w),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(5)),
             borderSide: BorderSide(color: Colors.grey.shade200, width: 1),
