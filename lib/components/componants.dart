@@ -29,6 +29,7 @@ class CustomSubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      height: 30.h,
       width: width,
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
@@ -39,8 +40,8 @@ class CustomSubmitButton extends StatelessWidget {
             0,
             20.h,
           ), // Minimizes the button height to 40 pixels
-          padding: EdgeInsets.symmetric(vertical: 6.0.h, horizontal: 20.0.w),
 
+          padding: EdgeInsets.symmetric(vertical: 6.0.h, horizontal: 5.0.w),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5),
             side:
@@ -65,17 +66,21 @@ class CustomSubmitButton extends StatelessWidget {
                   children: [
                     icon!,
                     const SizedBox(width: 5),
-                    Text(
-                      text,
-                      style: AppTextStyles.smallStyle.copyWith(
-                        color: textColor,
+                    FittedBox(
+                      child: Text(
+                        text,
+                        style: AppTextStyles.smallStyle.copyWith(
+                          color: textColor,
+                        ),
                       ),
                     ),
                   ],
                 )
-                : Text(
-                  text,
-                  style: AppTextStyles.smallStyle.copyWith(color: textColor),
+                : FittedBox(
+                  child: Text(
+                    text,
+                    style: AppTextStyles.smallStyle.copyWith(color: textColor),
+                  ),
                 ),
       ),
     );
@@ -108,8 +113,10 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      // height: 30.h,
       decoration: BoxDecoration(
         color: Colors.white,
+
         borderRadius: BorderRadius.circular(5),
         boxShadow: [
           BoxShadow(
@@ -136,7 +143,7 @@ class CustomTextField extends StatelessWidget {
 
         decoration: InputDecoration(
           fillColor: Colors.white,
-          filled: true,
+          // filled: true,
           isDense: true,
           contentPadding: EdgeInsets.symmetric(
             vertical: 7.0.h,
@@ -155,7 +162,7 @@ class CustomTextField extends StatelessWidget {
             borderSide: BorderSide(color: Colors.white.withOpacity(0.5)),
           ),
           hintText: hintText,
-          hintStyle: AppTextStyles.smallStyle,
+          hintStyle: TextStyle(fontFamily: 'Abel'),
         ),
       ),
     );
@@ -195,6 +202,7 @@ class CustomDropdownMenu<T> extends StatelessWidget {
         ],
       ),
       child: DropdownButtonFormField<T>(
+        icon: Icon(Icons.keyboard_arrow_down, color: Colors.black),
         dropdownColor: Colors.white,
         value: value,
         items: items,

@@ -17,7 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   });
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => Size.fromHeight(50.h);
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +26,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
       centerTitle: true,
       backgroundColor: appbar,
-      title: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SvgPicture.asset('assets/svg/logo2.svg', height: 40.h),
-          const SizedBox(height: 5),
-        ],
+      title: Center(
+        child: SvgPicture.asset('assets/svg/logo2.svg', height: 40.h),
       ),
       leading: Builder(
         builder:
@@ -65,7 +61,7 @@ class CustomAppBarSecond extends StatelessWidget
   const CustomAppBarSecond({super.key, required this.title});
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => Size.fromHeight(40.h);
 
   @override
   Widget build(BuildContext context) {

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/components/widget/appbar.dart';
 import 'package:taj_alsafa/const/colors.dart';
+import 'package:taj_alsafa/const/text_style.dart';
 import 'package:taj_alsafa/screen/home/cubit/home_cubit.dart';
 
 class EditePassword extends StatefulWidget {
@@ -46,11 +47,34 @@ class _EditePasswordState extends State<EditePassword> {
         child: BlocConsumer<HomeCubit, HomeState>(
           listener: (context, state) {
             if (state is UpdateUserPasswordSuccessState) {
-              showToast(
-                msg: 'Password updated successfully',
-                state: ToastStates.success,
+              Navigator.pop(context); // pop dialog
+
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    backgroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.r),
+                    ),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.check,
+                          color: Color.fromRGBO(127, 209, 174, 1),
+                          size: 100,
+                        ),
+                        Text(
+                          'Password Changed\nSuccessfully',
+                          textAlign: TextAlign.center,
+                          style: AppTextStyles.imeenStyle,
+                        ),
+                      ],
+                    ),
+                  );
+                },
               );
-              Navigator.pop(context);
             } else if (state is UpdateUserPasswordErrorState) {
               showToast(msg: state.errorMessage, state: ToastStates.error);
             }

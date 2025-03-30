@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/text_style.dart';
 import 'package:taj_alsafa/documents/taps/invoice_tab.dart';
@@ -33,6 +34,7 @@ class _MyDocumentsPageState extends State<MyDocumentsPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 50.h,
         backgroundColor: appbar,
         centerTitle: true,
         leading: IconButton(
@@ -50,10 +52,16 @@ class _MyDocumentsPageState extends State<MyDocumentsPage>
         bottom: TabBar(
           indicatorColor: Colors.green,
           labelColor: Colors.black,
-
           controller: _tabController,
           labelStyle: AppTextStyles.secondaryStyle.copyWith(
             fontWeight: FontWeight.w400,
+            fontSize: MediaQuery.sizeOf(context).width > 600 ? 12.sp : 16.sp,
+          ),
+          indicator: UnderlineTabIndicator(
+            borderSide: BorderSide(width: 3.0, color: Colors.green),
+            insets: EdgeInsets.symmetric(
+              horizontal: -30.w,
+            ), // Decrease this to make it longer
           ),
           tabs: [
             Tab(text: 'Quotation'),

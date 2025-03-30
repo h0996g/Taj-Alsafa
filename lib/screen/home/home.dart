@@ -14,7 +14,10 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: DrawerPage(),
+      drawer: SizedBox(
+        width: MediaQuery.sizeOf(context).width * 0.7,
+        child: DrawerPage(),
+      ),
       appBar: CustomAppBar(
         logoAssetPath: 'assets/images/logo/logo.png',
         notificationCount: 3,
@@ -29,7 +32,7 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
 
             children: [
-              SizedBox(height: 20.h),
+              SizedBox(height: 10.h),
               SizedBox(
                 height: 180.h,
                 width: double.infinity,
@@ -44,6 +47,7 @@ class HomePage extends StatelessWidget {
                     Image.asset(
                       'assets/images/home/Slider2.png',
                       fit: BoxFit.cover,
+
                       width: double.infinity,
                     ),
                   ],
@@ -73,11 +77,14 @@ class HomePage extends StatelessWidget {
                       onPressed: () {},
                       color: secondButtonColor,
                     ),
+                    SizedBox(height: 5.h),
                     CustomSubmitButton(
                       text: 'My Request',
                       onPressed: () {},
                       color: secondButtonColor,
                     ),
+                    SizedBox(height: 5.h),
+                    // SizedBox(height: 3.h),
                     CustomSubmitButton(
                       text: 'Handing Over',
                       onPressed: () {},

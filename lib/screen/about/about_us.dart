@@ -21,7 +21,7 @@ class AboutUs extends StatelessWidget {
             children: [
               SizedBox(height: 20.h),
 
-              SvgPicture.asset('assets/svg/logo2.svg'),
+              SvgPicture.asset('assets/svg/logo2.svg', height: 80.h),
               SizedBox(height: 20.h),
               Text(
                 'Taj AL Safa Real Estate Development was established in Amman in 2014 by industry specialists with more than 20 years of expertise in the real estate business.',

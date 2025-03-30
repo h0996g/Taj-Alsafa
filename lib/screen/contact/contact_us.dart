@@ -11,6 +11,8 @@ class ContactUs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.sizeOf(context).width;
+
     return Scaffold(
       appBar: CustomAppBarSecond(title: 'Contact Us'),
 
@@ -78,6 +80,7 @@ class ContactUs extends StatelessWidget {
                     children: [
                       Image.asset('assets/images/media/twitter.png'),
                       SizedBox(width: 18.w),
+
                       Image.asset('assets/images/media/facebook.png'),
                       SizedBox(width: 18.w),
                       Image.asset('assets/images/media/youtube.png'),
@@ -104,68 +107,71 @@ class ContactUs extends StatelessWidget {
                   SizedBox(height: 5.h),
                   Text('Your Suggestions', style: AppTextStyles.secondaryStyle),
                   SizedBox(height: 5.h),
-                  ElevatedButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            backgroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            title: Center(
-                              child: Text(
-                                'Your Suggestions',
-                                style: AppTextStyles.secondaryStyle,
+                  SizedBox(
+                    height: 26.h,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              backgroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
                               ),
-                            ),
-                            content: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Container(
-                                  height: 150,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: appbar,
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: TextField(
-                                    decoration: InputDecoration(
-                                      hintText: 'Write Here ...',
-                                      border: InputBorder.none,
-                                      contentPadding: EdgeInsets.all(16),
+                              title: Center(
+                                child: Text(
+                                  'Your Suggestions',
+                                  style: AppTextStyles.secondaryStyle,
+                                ),
+                              ),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Container(
+                                    height: 150.h,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: appbar,
+                                      borderRadius: BorderRadius.circular(12),
                                     ),
-                                    maxLines: null,
-                                    expands: true,
+                                    child: TextField(
+                                      decoration: InputDecoration(
+                                        hintText: 'Write Here ...',
+                                        border: InputBorder.none,
+                                        contentPadding: EdgeInsets.all(16.dg),
+                                      ),
+                                      maxLines: null,
+                                      expands: true,
+                                    ),
                                   ),
+                                ],
+                              ),
+                              actions: [
+                                CustomSubmitButton(
+                                  text: 'Send',
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
                                 ),
                               ],
-                            ),
-                            actions: [
-                              CustomSubmitButton(
-                                text: 'Send',
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: appbar,
-                      foregroundColor: Colors.black,
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Spacer(),
-                        Icon(Icons.arrow_forward, color: Colors.black),
-                      ],
+                            );
+                          },
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: appbar,
+                        foregroundColor: Colors.black,
+                        elevation: 2,
+                        shape: RoundedRectangleBorder(),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Spacer(),
+                          Icon(Icons.arrow_forward, color: Colors.black),
+                        ],
+                      ),
                     ),
                   ),
                 ],

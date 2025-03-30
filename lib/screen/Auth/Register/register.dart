@@ -7,8 +7,7 @@ import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/const.dart';
 import 'package:taj_alsafa/const/text_style.dart';
 import 'package:taj_alsafa/hive/BD/hive.dart';
-import 'package:taj_alsafa/screen/Auth/Login/cubit/login_cubit.dart';
-import 'package:taj_alsafa/screen/Auth/Login/login.dart';
+
 import 'package:taj_alsafa/screen/Auth/Register/cubit/register_cubit.dart';
 import 'package:taj_alsafa/screen/home/cubit/home_cubit.dart';
 import 'package:taj_alsafa/screen/home/home.dart';
@@ -109,16 +108,7 @@ class RegisterPage extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: InkWell(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder:
-                                    (context) => BlocProvider(
-                                      create: (context) => LoginCubit(),
-                                      child: Login(),
-                                    ),
-                              ),
-                            );
+                            Navigator.pop(context);
                           },
                           child: Text(
                             'Already have an account? Sign In',

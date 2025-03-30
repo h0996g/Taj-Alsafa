@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/const/text_style.dart';
@@ -45,7 +46,11 @@ class QuotationTab extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 CustomSubmitButton(
-                  icon: SvgPicture.asset('assets/svg/Pdf.svg'),
+                  icon: SvgPicture.asset(
+                    'assets/svg/Pdf.svg',
+                    height: 15.h,
+                    width: 15.w,
+                  ),
                   text: 'View File',
                   onPressed: () {},
                   textColor: Colors.white,

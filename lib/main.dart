@@ -6,8 +6,7 @@ import 'package:taj_alsafa/const/const.dart';
 import 'package:taj_alsafa/helper/observer.dart';
 import 'package:taj_alsafa/hive/BD/hive.dart';
 import 'package:taj_alsafa/hive/user/user_mode.dart';
-import 'package:taj_alsafa/screen/Auth/Login/cubit/login_cubit.dart';
-import 'package:taj_alsafa/screen/Auth/Login/login.dart';
+import 'package:taj_alsafa/screen/Auth/Login/intro.dart';
 import 'package:taj_alsafa/screen/home/cubit/home_cubit.dart';
 import 'package:taj_alsafa/screen/home/home.dart';
 import 'package:taj_alsafa/them.dart';
@@ -55,13 +54,7 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home:
-              userIdConst != null
-                  ? HomePage()
-                  : BlocProvider(
-                    create: (context) => LoginCubit(),
-                    child: Login(),
-                  ),
+          home: userIdConst != null ? HomePage() : Intro(),
 
           theme: AppThemes.lightTheme,
         ),

@@ -109,7 +109,11 @@ class RealStateInfo extends StatelessWidget {
                   SizedBox(height: 10.h),
                   CustomSubmitButton(
                     width: double.infinity,
-                    icon: SvgPicture.asset('assets/svg/Pdf.svg'),
+                    icon: SvgPicture.asset(
+                      'assets/svg/Pdf.svg',
+                      height: 15.h,
+                      width: 15.w,
+                    ),
                     text: 'View File',
                     onPressed: () {},
                     textColor: Colors.white,
@@ -122,7 +126,11 @@ class RealStateInfo extends StatelessWidget {
                   SizedBox(height: 10.h),
                   CustomSubmitButton(
                     width: double.infinity,
-                    icon: SvgPicture.asset('assets/svg/Pdf.svg'),
+                    icon: SvgPicture.asset(
+                      'assets/svg/Pdf.svg',
+                      height: 15.h,
+                      width: 15.w,
+                    ),
                     text: 'View File',
                     onPressed: () {},
                     textColor: Colors.white,
