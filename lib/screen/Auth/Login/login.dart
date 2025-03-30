@@ -51,6 +51,7 @@ class Login extends StatelessWidget {
                     obscureText: true,
                     hintText: 'Password',
                     controller: LoginCubit.get(context).passwordController,
+                    textInputAction: TextInputAction.done,
                     validator: (p0) {
                       if (p0!.isEmpty) {
                         return 'Please Enter Your Password';

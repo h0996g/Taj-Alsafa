@@ -87,6 +87,7 @@ class RegisterPage extends StatelessWidget {
                   SizedBox(height: 10.h),
                   CustomTextField(
                     hintText: 'Confirm Password',
+                    textInputAction: TextInputAction.done,
                     controller:
                         RegisterCubit.get(context).confirmPasswordController,
                     obscureText: true,

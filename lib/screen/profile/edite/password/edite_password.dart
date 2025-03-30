@@ -133,6 +133,7 @@ class _EditePasswordState extends State<EditePassword> {
                 obscureText: true,
                 hintText: 'Confirm New Password',
                 controller: confirmNewPasswordController,
+                textInputAction: TextInputAction.done,
                 validator: (p0) {
                   if (p0!.isEmpty) {
                     return 'Please confirm your new password';

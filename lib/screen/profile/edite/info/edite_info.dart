@@ -155,6 +155,7 @@ class _EditeProfileState extends State<EditeProfile> {
                 CustomTextField(
                   hintText: 'Email Address',
                   controller: _emailController,
+                  textInputAction: TextInputAction.done,
                   validator: (p0) {
                     if (p0!.isEmpty) {
                       return 'Email must not be empty';
