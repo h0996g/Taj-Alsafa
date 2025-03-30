@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_alsafa/components/componants.dart';
 import 'package:taj_alsafa/components/widget/appbar.dart';
 import 'package:taj_alsafa/components/widget/drawer.dart';
+import 'package:taj_alsafa/components/widget/slider.dart';
 import 'package:taj_alsafa/const/colors.dart';
 import 'package:taj_alsafa/const/text_style.dart';
 import 'package:taj_alsafa/screen/notification/notification.dart';
@@ -33,27 +34,7 @@ class HomePage extends StatelessWidget {
 
             children: [
               SizedBox(height: 10.h),
-              SizedBox(
-                height: 180.h,
-                width: double.infinity,
-                child: PageView(
-                  controller: PageController(viewportFraction: 1),
-                  children: [
-                    Image.asset(
-                      'assets/images/home/Slider.png',
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                    ),
-                    Image.asset(
-                      'assets/images/home/Slider2.png',
-                      fit: BoxFit.cover,
-
-                      width: double.infinity,
-                    ),
-                  ],
-                ),
-              ),
-
+              ImageSlider(),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: Column(
