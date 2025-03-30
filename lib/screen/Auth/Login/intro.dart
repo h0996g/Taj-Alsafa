@@ -22,13 +22,12 @@ class _IntroState extends State<Intro> {
   void initState() {
     super.initState();
 
-    // Initialize video from assets
     _controller = VideoPlayerController.asset('assets/videos/into.mp4')
       ..initialize().then((_) {
         _controller.setLooping(true);
         _controller.setVolume(0);
         _controller.play();
-        setState(() {}); // To refresh the widget when initialized
+        setState(() {});
       });
   }
 

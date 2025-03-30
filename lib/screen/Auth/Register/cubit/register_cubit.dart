@@ -77,7 +77,6 @@ class RegisterCubit extends Cubit<RegisterState> {
     // Save the user to the box.
     await userBox.add(user);
 
-    // Emit a state indicating the user info was saved successfully.
     emit(UserInfoSaved(userId: user.id));
   }
 }

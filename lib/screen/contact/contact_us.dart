@@ -130,9 +130,7 @@ class ContactUs extends StatelessWidget {
                               ),
                               backgroundColor: Colors.white,
                               child: Container(
-                                width:
-                                    double
-                                        .infinity, // ensures it uses full width of Dialog
+                                width: double.infinity,
                                 height: 320.h,
                                 padding: EdgeInsets.all(16.dg),
                                 child: Padding(

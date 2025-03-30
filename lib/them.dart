@@ -6,9 +6,9 @@ class AppThemes {
     useMaterial3: true,
     scaffoldBackgroundColor: Colors.white,
     textSelectionTheme: TextSelectionThemeData(
-      cursorColor: primaryColor, // Change to your desired color
-      selectionColor: primaryColor.withOpacity(0.3), // Text selection color
-      selectionHandleColor: primaryColor, // Selection handle color
+      cursorColor: primaryColor,
+      selectionColor: primaryColor.withOpacity(0.3),
+      selectionHandleColor: primaryColor,
     ),
     brightness: Brightness.light,
     primaryColor: primaryColor,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taj_alsafa/const/text_style.dart';
-import 'package:taj_alsafa/components/componants.dart'; // For CustomSubmitButton
+import 'package:taj_alsafa/components/componants.dart';
 
 class DocumentCard extends StatelessWidget {
   final Map<String, dynamic> item;
@@ -31,7 +31,7 @@ class DocumentCard extends StatelessWidget {
             color: Colors.grey.withOpacity(0.4),
             spreadRadius: 2,
             blurRadius: 6,
-            offset: const Offset(2, 0), // Shadow in all directions
+            offset: const Offset(2, 0),
           ),
         ],
       ),

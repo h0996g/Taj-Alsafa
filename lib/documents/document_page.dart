@@ -10,7 +10,6 @@ class MyDocumentsPage extends StatefulWidget {
   const MyDocumentsPage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _MyDocumentsPageState createState() => _MyDocumentsPageState();
 }
 
@@ -59,9 +58,7 @@ class _MyDocumentsPageState extends State<MyDocumentsPage>
           ),
           indicator: UnderlineTabIndicator(
             borderSide: BorderSide(width: 3.0, color: Colors.green),
-            insets: EdgeInsets.symmetric(
-              horizontal: -30.w,
-            ), // Decrease this to make it longer
+            insets: EdgeInsets.symmetric(horizontal: -30.w),
           ),
           tabs: [
             Tab(text: 'Quotation'),

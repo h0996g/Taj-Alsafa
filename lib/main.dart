@@ -15,7 +15,7 @@ Future<void> main() async {
 
   Bloc.observer = MyBlocObserver();
   await Hive.initFlutter();
-  await HiveDB.initHive(); // Initialize Hive and open the "users" box
+  await HiveDB.initHive();
   userIdConst = HiveDB.getUserId();
   // Print users stored in Hive
   printStoredUsers();
