@@ -11,8 +11,6 @@ class ContactUs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.sizeOf(context).width;
-
     return Scaffold(
       appBar: CustomAppBarSecond(title: 'Contact Us'),
 
